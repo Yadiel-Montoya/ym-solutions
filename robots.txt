@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /brand/
+Disallow: /cotizaciones/
+Disallow: /mockups/
+
+Sitemap: /sitemap.xml

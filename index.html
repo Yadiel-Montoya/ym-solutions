@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YM Solutions — Software a la medida de tu negocio</title>
+  <meta name="description" content="Agencia de desarrollo de software: páginas web con WhatsApp, chatbots, interfaces con ERP y automatizaciones. Soluciones claras, sin complicaciones.">
+  <meta property="og:title" content="YM Solutions — Software a la medida de tu negocio">
+  <meta property="og:description" content="Páginas web, chatbots, interfaces con ERP y automatización. Cotiza gratis por WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Cuánto cuesta una página web?", "acceptedAnswer": { "@type": "Answer", "text": "Depende de lo que tu negocio necesite. La primera plática es gratis: nos cuentas qué buscas y te damos precio exacto por escrito, sin compromiso." } },
+      { "@type": "Question", "name": "¿En cuánto tiempo estará lista mi página web?", "acceptedAnswer": { "@type": "Answer", "text": "Una página web profesional toma normalmente de 2 a 3 semanas desde el anticipo." } },
+      { "@type": "Question", "name": "¿Trabajan con negocios fuera de México?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, trabajamos de forma remota con clientes en Estados Unidos y otros países, por WhatsApp y videollamada." } }
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 114'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M18 80 V28 L48 60 L78 28 V80 M48 60 V94' fill='none' stroke='url(%23g)' stroke-width='11' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "YM Solutions",
+    "description": "Agencia de desarrollo de software: páginas web con WhatsApp, chatbots, interfaces con ERP y automatizaciones.",
+    "slogan": "Software a la medida de tu negocio",
+    "areaServed": ["México", "Estados Unidos"],
+    "address": { "@type": "PostalAddress", "addressLocality": "Naucalpan de Juárez", "addressRegion": "Estado de México", "addressCountry": "MX" },
+    "email": "ymontoya.ymsolutions@gmail.com",
+    "telephone": "+52-55-6559-5788",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61593035162983",
+      "https://www.instagram.com/ym__solutions/"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#servicios">Saltar al contenido</a>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#inicio" class="brand" aria-label="YM Solutions — inicio">
+        <svg class="brand__mark" viewBox="0 0 96 114" aria-hidden="true">
+          <defs><linearGradient id="lg-nav" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/>
+          </linearGradient></defs>
+          <path d="M18 80 V28 L48 60 L78 28 V80 M48 60 V94" fill="none" stroke="url(#lg-nav)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand__name">YM <em>SOLUTIONS</em></span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="btn btn--wa nav__cta" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20cotizar%20un%20proyecto%20%F0%9F%9A%80" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.668-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Cotizar gratis
+      </a>
+      <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="glow glow--cyan"></div>
+      <div class="glow glow--violet"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__copy reveal">
+        <p class="hero__badge"><span class="pulse-dot"></span> Agencia de desarrollo · México</p>
+        <h1 class="hero__title" aria-label="Software a la medida de tu negocio">
+          Software <span class="gradient-text">a la medida</span> de tu <span class="rotator" id="rotator" aria-hidden="true" data-words="negocio,consultorio,restaurante,tienda,taller,gimnasio">negocio</span>
+        </h1>
+        <p class="hero__sub">
+          Páginas web que reciben pedidos por WhatsApp, chatbots que atienden por ti,
+          interfaces con tu ERP y automatizaciones que te devuelven horas.
+          <strong>Soluciones claras, sin complicaciones.</strong>
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20cotizar%20un%20proyecto%20%F0%9F%9A%80" target="_blank" rel="noopener">
+            Cotiza tu proyecto gratis
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost btn--lg" href="#portafolio">Ver portafolio</a>
+        </div>
+        <ul class="hero__stats">
+          <li><strong class="count" data-count="24" data-suffix="">0</strong><span>hrs máx. de respuesta</span></li>
+          <li><strong class="count" data-count="100" data-suffix="%">0%</strong><span>proyectos a la medida</span></li>
+          <li><strong>0</strong><span>letras chiquitas</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__visual reveal" aria-hidden="true">
+        <div class="code-card float-1">
+          <div class="code-card__bar"><i></i><i></i><i></i><span>ym-solutions.dev</span></div>
+          <pre class="code-card__body"><code><span class="c-key">const</span> <span class="c-var">tuNegocio</span> = <span class="c-key">await</span> <span class="c-fn">ym</span>.<span class="c-fn">construir</span>({
+  web: <span class="c-str">'moderna y rápida'</span>,
+  whatsapp: <span class="c-bool">true</span>,
+  erp: <span class="c-str">'conectado'</span>,
+  ventas: <span class="c-str">'en automático'</span> <span class="c-cmt">// 24/7</span>
+});</code></pre>
+        </div>
+        <div class="wa-card float-2">
+          <div class="wa-card__head">
+            <div class="wa-card__avatar">🛍️</div>
+            <div><b>Tu página web</b><span>en línea</span></div>
+          </div>
+          <div class="wa-card__msg wa-card__msg--in">¡Nuevo pedido recibido! 🎉<br><small>Ana · 2 artículos · $850</small></div>
+          <div class="wa-card__msg wa-card__msg--out">Confirmado ✓ Se entrega hoy</div>
+        </div>
+        <div class="chip-float float-3">⚙️ Automatización activa</div>
+        <div class="chip-float float-4">🔗 ERP sincronizado</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Páginas Web</span><i>◆</i><span>Chatbots WhatsApp</span><i>◆</i><span>Interfaces con ERP</span><i>◆</i><span>Automatización</span><i>◆</i><span>E-commerce</span><i>◆</i><span>Apps a la medida</span><i>◆</i>
+      <span>Páginas Web</span><i>◆</i><span>Chatbots WhatsApp</span><i>◆</i><span>Interfaces con ERP</span><i>◆</i><span>Automatización</span><i>◆</i><span>E-commerce</span><i>◆</i><span>Apps a la medida</span><i>◆</i>
+    </div>
+  </div>
+
+  <!-- ============ SERVICIOS (BENTO) ============ -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <p class="kicker reveal">Servicios</p>
+      <h2 class="section__title reveal">Todo lo que tu negocio necesita,<br>en un solo lugar</h2>
+      <div class="bento">
+        <article class="bento__card bento__card--xl reveal">
+          <div class="bento__icon">🌐</div>
+          <h3>Páginas web que venden</h3>
+          <p>Sitios modernos y rápidos donde tus clientes cotizan, agendan o piden <strong>directo a tu WhatsApp</strong>. Con formularios, galería, redes sociales y optimización para Google.</p>
+          <div class="bento__tags"><span>Diseño a medida</span><span>Responsive</span><span>SEO local</span></div>
+        </article>
+        <article class="bento__card reveal">
+          <div class="bento__icon">💬</div>
+          <h3>Chatbots de WhatsApp</h3>
+          <p>Atención automática 24/7: responde preguntas, toma pedidos y agenda citas aunque estés dormido.</p>
+        </article>
+        <article class="bento__card reveal">
+          <div class="bento__icon">🔗</div>
+          <h3>Interfaces con ERP</h3>
+          <p>Conectamos tu sitio o app con tu ERP: inventario, facturación y clientes sincronizados en tiempo real.</p>
+        </article>
+        <article class="bento__card reveal">
+          <div class="bento__icon">⚙️</div>
+          <h3>Automatizaciones</h3>
+          <p>Reportes que se generan solos, datos que se capturan solos, alertas que llegan solas. Tú, a lo importante.</p>
+        </article>
+        <article class="bento__card reveal">
+          <div class="bento__icon">🛒</div>
+          <h3>E-commerce</h3>
+          <p>Tienda en línea con carrito, pagos y confirmación de pedidos por WhatsApp.</p>
+        </article>
+        <article class="bento__card bento__card--wide reveal">
+          <div class="bento__icon">🚀</div>
+          <h3>Desarrollo a la medida</h3>
+          <p>Apps web, móviles o de escritorio diseñadas exactamente para tu operación. Si lo puedes describir, lo podemos construir — y si no sabes cómo describirlo, te ayudamos a aterrizarlo.</p>
+          <a class="bento__link" href="https://wa.me/5215565595788?text=Hola%2C%20tengo%20un%20proyecto%20especial%20que%20quiero%20platicarles" target="_blank" rel="noopener">Platícanos tu idea →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTAFOLIO ============ -->
+  <section class="section section--alt" id="portafolio">
+    <div class="container">
+      <p class="kicker reveal">Portafolio</p>
+      <h2 class="section__title reveal">Proyectos que hablan por nosotros</h2>
+      <p class="section__sub reveal">Una muestra de lo que construimos: sitios reales, demos funcionales y conceptos listos para aterrizar en tu negocio.</p>
+
+      <div class="folio">
+        <!-- 1. Dental -->
+        <article class="folio__card reveal">
+          <div class="folio__preview thumb-dental" aria-hidden="true">
+            <div class="t-nav"><b>🦷 Clínica Dental</b><span></span><span></span><span></span></div>
+            <div class="t-hero">
+              <div class="t-copy"><i class="t-badge">⭐ 5.0 en Google</i><b>Tu sonrisa en<br>manos expertas</b><em class="t-cta">💬 Agenda por WhatsApp</em></div>
+              <div class="t-art">🦷</div>
+            </div>
+          </div>
+          <div class="folio__meta">
+            <span class="folio__type">Sitio web + citas</span>
+            <h3>Clínica dental con agenda por WhatsApp</h3>
+            <p>Página que convierte las reseñas de Google en pacientes: agenda directa, servicios y opiniones destacadas.</p>
+            <a class="folio__link" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20una%20p%C3%A1gina%20con%20citas%20por%20WhatsApp%20para%20mi%20consultorio" target="_blank" rel="noopener">Quiero algo así →</a>
+          </div>
+        </article>
+
+        <!-- 2. Jardinería -->
+        <article class="folio__card reveal">
+          <div class="folio__preview thumb-garden" aria-hidden="true">
+            <div class="t-nav"><b>🌿 GreenPro</b><span></span><span></span><span></span></div>
+            <div class="t-hero">
+              <div class="t-copy"><i class="t-badge">EE.UU. 🇺🇸</i><b>Landscaping<br>profesional</b><em class="t-cta">Get a free quote</em></div>
+              <div class="t-art">🌿</div>
+            </div>
+          </div>
+          <div class="folio__meta">
+            <span class="folio__type">Sitio web bilingüe · en desarrollo</span>
+            <h3>Jardinería y landscaping en Estados Unidos</h3>
+            <p>Presencia digital para servicios de jardinería: galería antes/después, cotizador y contacto directo.</p>
+            <a class="folio__link" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20una%20p%C3%A1gina%20para%20mi%20negocio%20de%20servicios" target="_blank" rel="noopener">Quiero algo así →</a>
+          </div>
+        </article>
+
+        <!-- 3. E-commerce -->
+        <article class="folio__card reveal">
+          <div class="folio__preview thumb-shop" aria-hidden="true">
+            <div class="t-nav"><b>🛍️ Boutique</b><span></span><span></span><span></span></div>
+            <div class="t-grid">
+              <div class="t-prod"><i>👗</i><b>$549</b></div>
+              <div class="t-prod"><i>👜</i><b>$899</b></div>
+              <div class="t-prod"><i>👠</i><b>$1,190</b></div>
+            </div>
+            <em class="t-cta t-cta--center">🛒 Pagar · confirmación por WhatsApp</em>
+          </div>
+          <div class="folio__meta">
+            <span class="folio__type">E-commerce · demo</span>
+            <h3>Tienda en línea con pagos integrados</h3>
+            <p>Catálogo, carrito, cobro en línea y confirmación automática de pedidos por WhatsApp.</p>
+            <a class="folio__link" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20una%20tienda%20en%20l%C3%ADnea%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero algo así →</a>
+          </div>
+        </article>
+
+        <!-- 4. ERP Dashboard -->
+        <article class="folio__card reveal">
+          <div class="folio__preview thumb-erp" aria-hidden="true">
+            <div class="t-nav t-nav--dark"><b>📊 Panel ERP</b><span></span><span></span><span></span></div>
+            <div class="t-dash">
+              <div class="t-kpi"><span>Ventas hoy</span><b>$48,250</b><i class="up">▲ 12%</i></div>
+              <div class="t-kpi"><span>Inventario</span><b>1,204</b><i class="ok">sincronizado ✓</i></div>
+              <div class="t-bars"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:95%"></i></div>
+            </div>
+          </div>
+          <div class="folio__meta">
+            <span class="folio__type">Integración · demo</span>
+            <h3>Panel conectado a ERP en tiempo real</h3>
+            <p>Ventas, inventario y reportes del ERP visibles desde cualquier dispositivo, sin capturar dos veces.</p>
+            <a class="folio__link" href="https://wa.me/5215565595788?text=Hola%2C%20me%20interesa%20conectar%20mi%20ERP%20con%20un%20panel%20o%20sitio%20web" target="_blank" rel="noopener">Quiero algo así →</a>
+          </div>
+        </article>
+
+        <!-- 5. Chatbot -->
+        <article class="folio__card reveal">
+          <div class="folio__preview thumb-bot" aria-hidden="true">
+            <div class="t-chat">
+              <div class="t-bubble t-bubble--in">Hola, ¿tienen mesa para 4 hoy a las 8?</div>
+              <div class="t-bubble t-bubble--out">¡Claro! 🎉 Mesa para 4 confirmada a las 8:00 pm a nombre de Luis.</div>
+              <div class="t-bubble t-bubble--in">¡Gracias!</div>
+              <div class="t-bubble t-bubble--out">Te esperamos 🍽️ — <i>respondido en automático</i></div>
+            </div>
+          </div>
+          <div class="folio__meta">
+            <span class="folio__type">Chatbot WhatsApp · demo</span>
+            <h3>Reservas de restaurante en automático</h3>
+            <p>El bot confirma reservas, comparte el menú y avisa promociones — sin que nadie toque el teléfono.</p>
+            <a class="folio__link" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20un%20chatbot%20de%20WhatsApp%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero algo así →</a>
+          </div>
+        </article>
+
+        <!-- 6. Cotizador -->
+        <article class="folio__card reveal">
+          <div class="folio__preview thumb-quote" aria-hidden="true">
+            <div class="t-doc">
+              <div class="t-doc__head"><b>COTIZACIÓN</b><span>Folio A-0042</span></div>
+              <div class="t-doc__row"></div><div class="t-doc__row t-doc__row--short"></div><div class="t-doc__row"></div>
+              <div class="t-doc__total"><span>Total</span><b>$12,400</b></div>
+              <em class="t-cta">📄 PDF enviado por WhatsApp en 30 seg</em>
+            </div>
+          </div>
+          <div class="folio__meta">
+            <span class="folio__type">Automatización · demo</span>
+            <h3>Cotizador automático con PDF</h3>
+            <p>El cliente elige lo que necesita y recibe su cotización en PDF al instante, con folio y seguimiento.</p>
+            <a class="folio__link" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20automatizar%20las%20cotizaciones%20de%20mi%20negocio" target="_blank" rel="noopener">Quiero algo así →</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="folio__cta reveal">
+        <p>¿Quieres ver tu negocio así?</p>
+        <a class="btn btn--primary" href="https://wa.me/5215565595788?text=Hola%2C%20vi%20su%20portafolio%20y%20quiero%20algo%20as%C3%AD%20para%20mi%20negocio" target="_blank" rel="noopener">Pide tu boceto gratis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section class="section" id="proceso">
+    <div class="container">
+      <p class="kicker reveal">Cómo trabajamos</p>
+      <h2 class="section__title reveal">De la idea al lanzamiento, sin dolores de cabeza</h2>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num">01</span>
+          <h3>Escuchamos</h3>
+          <p>Platicamos de tu negocio (por WhatsApp o llamada) y detectamos qué necesitas de verdad — a veces es menos de lo que pensabas.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">02</span>
+          <h3>Proponemos</h3>
+          <p>Recibes una cotización clara en PDF: alcance, entregables, tiempo y precio. Sin sorpresas ni letras chiquitas.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">03</span>
+          <h3>Construimos</h3>
+          <p>Desarrollamos con avances visibles cada semana. Incluye 2 rondas de ajustes para que quede exactamente como quieres.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">04</span>
+          <h3>Lanzamos y acompañamos</h3>
+          <p>Publicamos tu solución y nos quedamos contigo: soporte, cambios y mejoras con un plan mensual accesible.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ COMPROMISOS ============ -->
+  <section class="section section--alt" id="compromisos">
+    <div class="container">
+      <p class="kicker reveal">Nuestros compromisos</p>
+      <h2 class="section__title reveal">Lo que sí te prometemos</h2>
+      <div class="promises">
+        <div class="promise reveal"><i>⚡</i><h3>Respuesta en menos de 24 h</h3><p>Escríbenos hoy y mañana ya tienes respuesta, con propuesta clara.</p></div>
+        <div class="promise reveal"><i>🗣️</i><h3>Español claro, cero tecnicismos</h3><p>Te explicamos todo como se explica a un amigo, no como manual de ingeniería.</p></div>
+        <div class="promise reveal"><i>📄</i><h3>Precios por escrito</h3><p>Cotización formal con folio. Lo acordado es lo que pagas.</p></div>
+        <div class="promise reveal"><i>🤝</i><h3>Trato directo</h3><p>Hablas siempre con quien construye tu proyecto, no con un vendedor.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="container container--narrow">
+      <p class="kicker reveal">Preguntas frecuentes</p>
+      <h2 class="section__title reveal">Lo que todos preguntan antes de empezar</h2>
+      <div class="faq reveal">
+        <details>
+          <summary>¿Cuánto cuesta una página web?<i>+</i></summary>
+          <p>Depende de lo que tu negocio necesite: no cobramos lo mismo por una página de presentación que por una tienda en línea. Por eso la primera plática es gratis — nos cuentas qué buscas y te damos precio exacto por escrito, sin compromiso.</p>
+        </details>
+        <details>
+          <summary>¿En cuánto tiempo estará lista?<i>+</i></summary>
+          <p>Una página web profesional toma normalmente de 2 a 3 semanas desde el anticipo. Proyectos más grandes (e-commerce, integraciones ERP) se cotizan con su propio calendario, que conoces antes de empezar.</p>
+        </details>
+        <details>
+          <summary>No sé nada de tecnología, ¿es problema?<i>+</i></summary>
+          <p>Al contrario: es nuestra especialidad. Nos encargamos de todo lo técnico (dominio, hosting, correos, publicación) y te explicamos lo que necesitas saber en español claro. Tú solo nos cuentas de tu negocio.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa después de que entregan mi página?<i>+</i></summary>
+          <p>No te dejamos solo. Ofrecemos un plan de mantenimiento mensual accesible que incluye hosting, dominio, cambios normales y soporte directo por WhatsApp. Tu página siempre al día sin que te preocupes.</p>
+        </details>
+        <details>
+          <summary>¿Trabajan con negocios fuera de México?<i>+</i></summary>
+          <p>Sí. Trabajamos de forma remota con clientes en Estados Unidos y otros países — todo el proceso se lleva por WhatsApp y videollamada, con la misma cercanía.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL + CONTACTO ============ -->
+  <section class="section section--cta" id="contacto">
+    <div class="container contact">
+      <div class="contact__info reveal">
+        <h2>¿Listo para que tu negocio<br><span class="gradient-text">trabaje en automático?</span></h2>
+        <p>Cuéntanos tu idea. Te respondemos en menos de 24 horas con los siguientes pasos — y si nos mandas mensaje ahorita, probablemente antes. 😉</p>
+        <a class="btn btn--wa btn--lg" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20cotizar%20un%20proyecto%20%F0%9F%9A%80" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.668-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escríbenos por WhatsApp
+        </a>
+        <p class="contact__alt">O si prefieres, llena el formulario y <strong>se convierte en un mensaje de WhatsApp</strong> listo para enviar.</p>
+      </div>
+      <form class="contact__form reveal" id="contactForm">
+        <label>Tu nombre
+          <input type="text" name="nombre" placeholder="Ej. María López" required>
+        </label>
+        <label>Tu negocio
+          <input type="text" name="negocio" placeholder="Ej. Estética María / Taller / Consultorio…" required>
+        </label>
+        <fieldset class="form__chips">
+          <legend>¿Qué te interesa? <small>(elige uno o varios)</small></legend>
+          <label class="chip-check"><input type="checkbox" name="interes" value="Página web"><span>🌐 Página web</span></label>
+          <label class="chip-check"><input type="checkbox" name="interes" value="Chatbot de WhatsApp"><span>💬 Chatbot</span></label>
+          <label class="chip-check"><input type="checkbox" name="interes" value="Interfaz con ERP"><span>🔗 ERP</span></label>
+          <label class="chip-check"><input type="checkbox" name="interes" value="Automatización"><span>⚙️ Automatización</span></label>
+          <label class="chip-check"><input type="checkbox" name="interes" value="Tienda en línea"><span>🛒 Tienda en línea</span></label>
+        </fieldset>
+        <label>¿Qué necesitas?
+          <textarea name="mensaje" rows="4" placeholder="Ej. Quiero una página web donde mis clientes agenden citas por WhatsApp…" required></textarea>
+        </label>
+        <button type="submit" class="btn btn--primary btn--lg btn--full">Enviar por WhatsApp →</button>
+        <p class="form__note">Se abrirá WhatsApp con tu mensaje ya escrito. Sin registros ni spam.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__col footer__col--brand">
+        <a href="#inicio" class="brand">
+          <svg class="brand__mark" viewBox="0 0 96 114" aria-hidden="true">
+            <defs><linearGradient id="lg-foot" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#8b5cf6"/>
+            </linearGradient></defs>
+            <path d="M18 80 V28 L48 60 L78 28 V80 M48 60 V94" fill="none" stroke="url(#lg-foot)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand__name">YM <em>SOLUTIONS</em></span>
+        </a>
+        <p class="footer__tag">Software a la medida de tu negocio. Soluciones claras, sin complicaciones.</p>
+      </div>
+      <nav class="footer__col" aria-label="Servicios">
+        <h4>Servicios</h4>
+        <a href="#servicios">Páginas web</a>
+        <a href="#servicios">Chatbots WhatsApp</a>
+        <a href="#servicios">Interfaces con ERP</a>
+        <a href="#servicios">Automatización</a>
+      </nav>
+      <nav class="footer__col" aria-label="Explorar">
+        <h4>Explora</h4>
+        <a href="#portafolio">Portafolio</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="footer__col">
+        <h4>Hablemos</h4>
+        <a href="https://wa.me/5215565595788" target="_blank" rel="noopener">📲 55 6559 5788</a>
+        <a href="mailto:ymontoya.ymsolutions@gmail.com">✉️ Escríbenos</a>
+        <a href="https://www.facebook.com/profile.php?id=61593035162983" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/ym__solutions/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 YM Solutions · Naucalpan, Estado de México</p>
+      <p>Hecho con 💜 y mucho código</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a class="wa-float" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20informes%20%F0%9F%91%8B" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.668-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
