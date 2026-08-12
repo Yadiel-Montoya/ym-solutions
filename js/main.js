@@ -68,8 +68,10 @@ form.addEventListener('submit', e => {
   const data = new FormData(form);
   const intereses = data.getAll('interes');
   const lineaInteres = intereses.length ? `Me interesa: ${intereses.join(', ')}\n` : '';
+  const hora = new Date().getHours();
+  const saludo = hora < 12 ? 'Buenos días' : hora < 19 ? 'Buenas tardes' : 'Buenas noches';
   const texto =
-    `Hola, soy ${data.get('nombre')} 👋\n` +
+    `${saludo}, soy ${data.get('nombre')} 👋\n` +
     `Mi negocio: ${data.get('negocio')}\n` +
     lineaInteres +
     `\nLo que necesito: ${data.get('mensaje')}`;
