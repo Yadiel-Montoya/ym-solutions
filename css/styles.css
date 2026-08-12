@@ -997,6 +997,322 @@ input:focus-visible, textarea:focus-visible {
   .footer__bottom { flex-direction: column; align-items: center; text-align: center; }
 }
 
+/* ============================================================
+   SECTORES — "para quién trabajamos"
+   ============================================================ */
+.sectores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 46px;
+}
+.sector {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 32px 28px 30px;
+  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(.2,.8,.3,1), border-color 0.28s, background 0.28s;
+}
+.sector::after {
+  content: "";
+  position: absolute;
+  inset: auto auto -40% -30%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.sector:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+}
+.sector:hover::after { opacity: 1; }
+.sector__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.14), rgba(139, 92, 246, 0.14));
+  border: 1px solid var(--card-border);
+  margin-bottom: 18px;
+  transition: transform 0.28s cubic-bezier(.2,.8,.3,1);
+}
+.sector:hover .sector__icon { transform: scale(1.08) rotate(-4deg); }
+.sector h3 {
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  margin-bottom: 9px;
+}
+.sector p { font-size: 0.93rem; color: var(--text-2); }
+
+.sectores__cta {
+  margin-top: 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.sectores__cta p {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   PULIDO VISUAL v3
+   ============================================================ */
+
+/* Hero: aire y jerarquía */
+.hero__title { text-wrap: balance; }
+.section__title { text-wrap: balance; }
+.hero__sub { text-wrap: pretty; }
+
+/* Línea divisoria luminosa entre secciones */
+.section--alt { position: relative; }
+.section--alt::before,
+.section--alt::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.35), rgba(139, 92, 246, 0.35), transparent);
+}
+.section--alt::before { top: 0; }
+.section--alt::after { bottom: 0; }
+
+/* Bento: acento superior al pasar el mouse */
+.bento__card::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 24px; right: 24px;
+  height: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(.2,.8,.3,1);
+  border-radius: 2px;
+}
+.bento__card:hover::after { transform: scaleX(1); }
+
+/* Pasos: línea de conexión */
+.steps { position: relative; }
+.step::after {
+  content: "";
+  position: absolute;
+  top: 52px;
+  right: -12px;
+  width: 12px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.5), transparent);
+}
+.steps .step:last-child::after { display: none; }
+
+/* FAQ: hover más vivo */
+.faq details:hover { border-color: rgba(139, 92, 246, 0.4); }
+.faq summary { transition: color 0.2s; }
+.faq summary:hover { color: var(--cyan); }
+
+/* Formulario: etiqueta activa */
+.contact__form label:focus-within { color: var(--cyan); }
+
+/* Footer: separación superior luminosa */
+.footer { position: relative; }
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.45), transparent);
+}
+
+@media (max-width: 1024px) {
+  .sectores { grid-template-columns: 1fr 1fr; }
+  .step::after { display: none; }
+}
+@media (max-width: 640px) {
+  .sectores { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   v4 — EXPERIENCIA: luz, profundidad y movimiento
+   ============================================================ */
+
+/* --- Aurora animada de fondo (toda la página) --- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  background:
+    radial-gradient(45% 40% at 20% 25%, rgba(34, 211, 238, 0.10), transparent 60%),
+    radial-gradient(40% 45% at 80% 20%, rgba(139, 92, 246, 0.12), transparent 60%),
+    radial-gradient(50% 40% at 60% 80%, rgba(34, 211, 238, 0.07), transparent 60%);
+  filter: blur(60px);
+  animation: aurora 26s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes aurora {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(3%, -2%, 0) scale(1.08); }
+  100% { transform: translate3d(-2%, 3%, 0) scale(1.03); }
+}
+
+/* --- Grano fino: le quita el look "plano de plantilla" --- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.30'/%3E%3C/svg%3E");
+}
+.nav, .wa-float, .progress-bar, .skip-link { z-index: 100; }
+
+/* --- Halo que sigue al cursor --- */
+.cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 520px; height: 520px;
+  margin: -260px 0 0 -260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.09), rgba(139, 92, 246, 0.05) 45%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+.cursor-glow.on { opacity: 1; }
+
+/* --- Títulos que se arman palabra por palabra --- */
+.split-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px) rotate(2deg);
+  filter: blur(6px);
+  transition: opacity 0.6s cubic-bezier(.2,.8,.3,1), transform 0.6s cubic-bezier(.2,.8,.3,1), filter 0.6s;
+}
+.visible .split-word,
+.split-ready .split-word { opacity: 1; transform: none; filter: blur(0); }
+
+/* --- Tarjetas con brillo de borde al acercarse el mouse --- */
+.bento__card, .sector, .step, .promise, .folio__card {
+  position: relative;
+  isolation: isolate;
+}
+.bento__card::before,
+.sector::before,
+.step::before,
+.promise::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    260px circle at var(--mx, -999px) var(--my, -999px),
+    rgba(34, 211, 238, 0.75),
+    rgba(139, 92, 246, 0.35) 45%,
+    transparent 70%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  pointer-events: none;
+}
+.bento:hover .bento__card::before,
+.sectores:hover .sector::before,
+.steps:hover .step::before,
+.promises:hover .promise::before { opacity: 1; }
+
+/* el brillo interior del bento sigue funcionando, pero suavizado */
+.bento__card { transition: transform 0.3s cubic-bezier(.2,.8,.3,1), background 0.3s; }
+.bento__card:hover { transform: translateY(-6px) scale(1.012); }
+
+/* --- Hero: profundidad por capas (parallax) --- */
+.hero__copy, .hero__visual { will-change: transform; }
+.glow--cyan, .glow--violet { will-change: transform; }
+
+/* --- Botón primario: barrido de luz --- */
+.btn--primary { position: relative; overflow: hidden; }
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -80%;
+  width: 60%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-18deg);
+  animation: barrido 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes barrido {
+  0%, 62% { left: -80%; }
+  100%    { left: 130%; }
+}
+
+/* --- Marquee con desvanecido en los bordes --- */
+.marquee {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* --- Chips e íconos con rebote sutil --- */
+.bento__icon { transition: transform 0.35s cubic-bezier(.2,.8,.3,1); }
+.bento__card:hover .bento__icon { transform: translateY(-4px) rotate(-5deg) scale(1.06); }
+
+/* --- Pasos: el número se ilumina --- */
+.step__num { transition: transform 0.3s, filter 0.3s; }
+.step:hover .step__num { transform: scale(1.06); filter: drop-shadow(0 0 22px rgba(34, 211, 238, 0.45)); }
+
+/* --- Compromisos: emoji vivo --- */
+.promise i { transition: transform 0.35s cubic-bezier(.2,.8,.3,1); display: inline-block; }
+.promise:hover i { transform: translateY(-5px) scale(1.12); }
+
+/* --- FAQ: apertura suave --- */
+.faq details p {
+  animation: faqIn 0.35s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes faqIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --- Formulario: campos con foco elegante --- */
+.contact__form input,
+.contact__form textarea { transition: border-color 0.25s, box-shadow 0.25s, background 0.25s; }
+.contact__form input:focus,
+.contact__form textarea:focus { background: rgba(11, 18, 32, 0.9); }
+
+/* --- Scroll suave real --- */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* --- Respeto total a quien prefiere menos movimiento --- */
+@media (prefers-reduced-motion: reduce) {
+  body::before, .btn--primary::after { animation: none !important; }
+  .cursor-glow { display: none; }
+  .split-word { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
   .hero__inner { grid-template-columns: 1fr; gap: 70px; }

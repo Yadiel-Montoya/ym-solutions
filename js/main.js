@@ -46,12 +46,17 @@ const observer = new IntersectionObserver(
 );
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ---------- Brillo que sigue al mouse en las tarjetas bento ----------
-document.querySelectorAll('.bento__card').forEach(card => {
+// ---------- Brillo que sigue al mouse en las tarjetas ----------
+const conBrillo = document.querySelectorAll('.bento__card, .sector, .step, .promise');
+conBrillo.forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
     card.style.setProperty('--mx', `${e.clientX - r.left}px`);
     card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--mx', '-999px');
+    card.style.setProperty('--my', '-999px');
   });
 });
 
@@ -167,13 +172,120 @@ setTimeout(() => {
   setTimeout(() => waFloat.classList.remove('show-tip'), 6000);
 }, 6000);
 
-// ---------- Tilt 3D en tarjetas de portafolio ----------
-document.querySelectorAll('.folio__card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const rx = ((e.clientY - r.top) / r.height - 0.5) * -7;
-    const ry = ((e.clientX - r.left) / r.width - 0.5) * 7;
-    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+/* ============================================================
+   v4 — Experiencia
+   ============================================================ */
+
+const menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esTactil = window.matchMedia('(hover: none)').matches;
+
+// ---------- Halo que sigue al cursor ----------
+if (!menosMovimiento && !esTactil) {
+  const halo = document.createElement('div');
+  halo.className = 'cursor-glow';
+  document.body.appendChild(halo);
+
+  let objetivoX = innerWidth / 2, objetivoY = innerHeight / 2;
+  let x = objetivoX, y = objetivoY;
+
+  addEventListener('mousemove', e => {
+    objetivoX = e.clientX;
+    objetivoY = e.clientY;
+    halo.classList.add('on');
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => halo.classList.remove('on'));
+
+  (function seguir() {
+    x += (objetivoX - x) * 0.12;
+    y += (objetivoY - y) * 0.12;
+    halo.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    requestAnimationFrame(seguir);
+  })();
+}
+
+// ---------- Títulos que se arman palabra por palabra ----------
+document.querySelectorAll('.hero__title, .section__title, .contact__info h2').forEach(titulo => {
+  if (titulo.querySelector('.split-word')) return;
+
+  const envolver = nodo => {
+    [...nodo.childNodes].forEach(hijo => {
+      if (hijo.nodeType === Node.TEXT_NODE) {
+        const partes = hijo.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        partes.forEach(p => {
+          if (!p.trim()) return frag.appendChild(document.createTextNode(p));
+          const span = document.createElement('span');
+          span.className = 'split-word';
+          span.textContent = p;
+          frag.appendChild(span);
+        });
+        hijo.replaceWith(frag);
+      } else if (hijo.nodeType === Node.ELEMENT_NODE && !hijo.classList.contains('rotator')) {
+        envolver(hijo);
+      }
+    });
+  };
+  envolver(titulo);
+
+  const palabras = titulo.querySelectorAll('.split-word');
+  palabras.forEach((p, i) => { p.style.transitionDelay = `${i * 45}ms`; });
+
+  const obs = new IntersectionObserver(entradas => {
+    entradas.forEach(e => {
+      if (e.isIntersecting) {
+        titulo.classList.add('split-ready');
+        obs.unobserve(titulo);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(titulo);
+});
+
+// ---------- Parallax suave del hero ----------
+if (!menosMovimiento) {
+  const copy = document.querySelector('.hero__copy');
+  const visual = document.querySelector('.hero__visual');
+  const glowC = document.querySelector('.glow--cyan');
+  const glowV = document.querySelector('.glow--violet');
+
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (y > innerHeight) return;
+    if (copy) copy.style.transform = `translateY(${y * 0.12}px)`;
+    if (visual) visual.style.transform = `translateY(${y * 0.05}px)`;
+    if (glowC) glowC.style.transform = `translate(${y * 0.06}px, ${y * 0.1}px)`;
+    if (glowV) glowV.style.transform = `translate(${-y * 0.05}px, ${y * 0.08}px)`;
+  }, { passive: true });
+
+  // el hero también reacciona al mouse
+  const hero = document.querySelector('.hero');
+  if (hero && !esTactil) {
+    hero.addEventListener('mousemove', e => {
+      const dx = (e.clientX / innerWidth - 0.5) * 2;
+      const dy = (e.clientY / innerHeight - 0.5) * 2;
+      if (visual) visual.style.transform = `translate(${dx * 14}px, ${dy * 10}px)`;
+    });
+  }
+}
+
+// ---------- Tilt 3D en tarjetas de sectores ----------
+if (!esTactil) {
+  document.querySelectorAll('.sector').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
+      const ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
-  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+}
+
+// ---------- Solo una pregunta abierta a la vez ----------
+const preguntas = document.querySelectorAll('.faq details');
+preguntas.forEach(d => {
+  d.addEventListener('toggle', () => {
+    if (d.open) preguntas.forEach(o => { if (o !== d) o.open = false; });
+  });
 });
