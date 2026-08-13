@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raíz Verde Landscaping — Tu jardín, en buenas manos</title>
+  <meta name="description" content="Mantenimiento de jardines, césped, riego y patios. Mándanos una foto de tu jardín por WhatsApp y te damos precio el mismo día.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='80' font-size='80'%3E🌿%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <!-- Barra superior -->
+  <div class="topbar">
+    <span>📍 Servicio a domicilio en tu zona</span>
+    <span class="topbar__sep">·</span>
+    <span>🕗 Lun a Sáb · 8:00 am – 6:00 pm</span>
+    <span class="topbar__sep">·</span>
+    <a href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20un%20presupuesto%20para%20mi%20jard%C3%ADn%20%F0%9F%8C%BF">💬 Respuesta el mismo día</a>
+  </div>
+
+  <!-- Navegación -->
+  <header class="nav" id="nav">
+    <div class="wrap nav__in">
+      <a class="logo" href="#inicio">
+        <span class="logo__hoja">🌿</span>
+        <span class="logo__texto">Raíz <em>Verde</em></span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#trabajos">Trabajos</a>
+        <a href="#como">Cómo funciona</a>
+        <a href="#opiniones">Opiniones</a>
+      </nav>
+      <a class="btn btn--wa nav__cta" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20un%20presupuesto%20para%20mi%20jard%C3%ADn%20%F0%9F%8C%BF" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.668-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Cotiza por WhatsApp
+      </a>
+      <button class="nav__burger" id="navBurger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="hero__foto">
+      <img src="img/hero.jpg" alt="Jardín con borde de flores en plena floración">
+    </div>
+    <div class="wrap hero__in">
+      <div class="hero__card reveal">
+        <p class="hero__hola">Hola, vecino 👋</p>
+        <h1>Un jardín bonito no es un lujo.<br><span>Es tu casa dándote la bienvenida.</span></h1>
+        <p class="hero__sub">
+          Nosotros lo podamos, lo regamos y lo apapachamos.
+          Tú nada más siéntate a disfrutarlo — de preferencia con un café.
+        </p>
+        <div class="hero__botones">
+          <a class="btn btn--wa btn--g" href="https://wa.me/5215565595788?text=Hola%2C%20les%20mando%20foto%20de%20mi%20jard%C3%ADn%20para%20presupuesto%20%F0%9F%8C%BF" target="_blank" rel="noopener">
+            📸 Mándanos foto de tu jardín
+          </a>
+          <a class="btn btn--linea btn--g" href="#trabajos">Ver trabajos</a>
+        </div>
+        <ul class="hero__mini">
+          <li>✓ Presupuesto gratis</li>
+          <li>✓ Precio cerrado, sin sorpresas</li>
+          <li>✓ Respuesta el mismo día</li>
+        </ul>
+      </div>
+    </div>
+    <svg class="hero__onda" viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,60 C240,100 480,10 720,40 C960,70 1200,20 1440,50 L1440,90 L0,90 Z" fill="#f7f5ef"/></svg>
+  </section>
+
+  <!-- Confianza -->
+  <section class="confia">
+    <div class="wrap confia__in">
+      <div class="confia__item reveal"><i>✂️</i><b>Más de 10 años</b><span>de tijeras bien afiladas</span></div>
+      <div class="confia__item reveal"><i>🌦️</i><b>Llueva o truene</b><span>reagendamos sin drama</span></div>
+      <div class="confia__item reveal"><i>💬</i><b>Te contestamos hoy</b><span>no “en cuanto podamos”</span></div>
+      <div class="confia__item reveal"><i>🤝</i><b>Trato de vecino</b><span>el precio que te digo, es</span></div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="secc" id="servicios">
+    <div class="wrap">
+      <p class="etiqueta reveal">Lo que hacemos</p>
+      <h2 class="titulo reveal">Del pasto a las flores,<br>nos encargamos de todo</h2>
+      <div class="servicios">
+        <article class="serv reveal">
+          <div class="serv__foto"><img src="img/cesped.jpg" alt="Corte de césped con podadora" loading="lazy"></div>
+          <div class="serv__cuerpo">
+            <h3>🌱 Césped siempre parejo</h3>
+            <p>Corte, orillado y ese olor a pasto recién cortado que huele a domingo.</p>
+          </div>
+        </article>
+        <article class="serv reveal">
+          <div class="serv__foto"><img src="img/flores.jpg" alt="Borde de flores de temporada" loading="lazy"></div>
+          <div class="serv__cuerpo">
+            <h3>🌸 Flores de temporada</h3>
+            <p>Diseñamos camas y bordes que florecen todo el año, no solo en primavera.</p>
+          </div>
+        </article>
+        <article class="serv reveal">
+          <div class="serv__foto"><img src="img/riego.jpg" alt="Aspersor regando el jardín" loading="lazy"></div>
+          <div class="serv__cuerpo">
+            <h3>💧 Riego que se cuida solo</h3>
+            <p>Instalamos y reparamos sistemas de riego para que no cargues la manguera.</p>
+          </div>
+        </article>
+        <article class="serv reveal">
+          <div class="serv__foto"><img src="img/patio.jpg" alt="Patio con piso de piedra" loading="lazy"></div>
+          <div class="serv__cuerpo">
+            <h3>🪨 Patios y exteriores</h3>
+            <p>Pisos, senderos y esa esquina del asador que siempre quisiste estrenar.</p>
+          </div>
+        </article>
+        <article class="serv reveal">
+          <div class="serv__foto"><img src="img/jardinero.jpg" alt="Manos plantando un árbol joven" loading="lazy"></div>
+          <div class="serv__cuerpo">
+            <h3>🌳 Plantación y renovación</h3>
+            <p>Árboles, arbustos y césped nuevo. Le damos otra vida a jardines cansados.</p>
+          </div>
+        </article>
+        <article class="serv serv--verde reveal">
+          <div class="serv__cuerpo">
+            <h3>🍂 Limpieza de temporada</h3>
+            <p>Hojas, ramas y maleza fuera. Dejamos tu jardín listo para la siguiente estación — y nos llevamos hasta la última hojita.</p>
+            <a class="serv__link" href="https://wa.me/5215565595788?text=Hola%2C%20necesito%20limpieza%20de%20temporada%20en%20mi%20jard%C3%ADn" target="_blank" rel="noopener">Agendar limpieza →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trabajos -->
+  <section class="secc secc--crema" id="trabajos">
+    <div class="wrap">
+      <p class="etiqueta reveal">Trabajos recientes</p>
+      <h2 class="titulo reveal">Jardines que ya están presumiendo</h2>
+      <div class="galeria">
+        <figure class="reveal"><img src="img/hero.jpg" alt="Jardín con borde floral" loading="lazy"><figcaption>Borde floral de primavera</figcaption></figure>
+        <figure class="reveal"><img src="img/patio.jpg" alt="Patio de piedra" loading="lazy"><figcaption>Patio familiar renovado</figcaption></figure>
+        <figure class="reveal"><img src="img/cesped.jpg" alt="Césped recién cortado" loading="lazy"><figcaption>Mantenimiento semanal</figcaption></figure>
+        <figure class="reveal"><img src="img/flores.jpg" alt="Cama de flores" loading="lazy"><figcaption>Cama de flores de temporada</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section class="secc" id="como">
+    <div class="wrap">
+      <p class="etiqueta reveal">Así de fácil</p>
+      <h2 class="titulo reveal">Tres pasos y tu jardín queda de revista</h2>
+      <ol class="pasos">
+        <li class="reveal">
+          <span class="paso__num">1</span>
+          <h3>📸 Mándanos una foto</h3>
+          <p>Por WhatsApp, del jardín tal y como está. No te apures: los vemos peores a diario.</p>
+        </li>
+        <li class="reveal">
+          <span class="paso__num">2</span>
+          <h3>💬 Te damos precio hoy</h3>
+          <p>Precio cerrado y fecha. Sin “déjame ver” ni visitas para cobrarte la vuelta.</p>
+        </li>
+        <li class="reveal">
+          <span class="paso__num">3</span>
+          <h3>🌿 Llegamos y transformamos</h3>
+          <p>Puntuales, con todo el equipo. Al final caminamos el jardín contigo hasta que digas “wow”.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Opiniones -->
+  <section class="secc secc--crema" id="opiniones">
+    <div class="wrap">
+      <p class="etiqueta reveal">Vecinos contentos</p>
+      <h2 class="titulo reveal">No lo decimos nosotros</h2>
+      <div class="opis">
+        <blockquote class="reveal">
+          <div class="opi__estrellas">★★★★★</div>
+          <p>“Mandé la foto a las 9 de la mañana y a las 11 ya tenía precio. El sábado mi jardín parecía otro.”</p>
+          <footer>— Laura M. <span>· mantenimiento mensual</span></footer>
+        </blockquote>
+        <blockquote class="reveal">
+          <div class="opi__estrellas">★★★★★</div>
+          <p>“Me explicaron qué plantas sí aguantan el sol de mi patio en lugar de venderme las más caras. Eso se agradece.”</p>
+          <footer>— Roberto G. <span>· renovación completa</span></footer>
+        </blockquote>
+        <blockquote class="reveal">
+          <div class="opi__estrellas">★★★★★</div>
+          <p>“Llegaron a la hora que dijeron. A LA HORA. Y dejaron todo tan limpio que ni parecía que hubo obra.”</p>
+          <footer>— Familia Torres <span>· patio nuevo</span></footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA verde -->
+  <section class="banda">
+    <div class="wrap banda__in reveal">
+      <h2>¿Le tomamos una foto a tu jardín? 📸</h2>
+      <p>Mándala por WhatsApp y hoy mismo sabes cuánto cuesta dejarlo hermoso.</p>
+      <a class="btn btn--blanco btn--g" href="https://wa.me/5215565595788?text=Hola%2C%20aqu%C3%AD%20va%20la%20foto%20de%20mi%20jard%C3%ADn%20%F0%9F%8C%BF" target="_blank" rel="noopener">Mandar foto ahora</a>
+    </div>
+  </section>
+
+  <!-- Formulario -->
+  <section class="secc" id="contacto">
+    <div class="wrap contacto">
+      <div class="contacto__texto reveal">
+        <p class="etiqueta">Escríbenos</p>
+        <h2 class="titulo">Cuéntanos de tu jardín</h2>
+        <p class="contacto__p">¿Prefieres escribir con calma? Llena esto y se convierte en un
+        mensaje de WhatsApp ya redactado. Tú solo le das enviar.</p>
+        <ul class="contacto__lista">
+          <li>🕗 Lunes a sábado, 8:00 am – 6:00 pm</li>
+          <li>📍 Servicio a domicilio en toda la zona</li>
+          <li>💬 WhatsApp: respuesta el mismo día</li>
+        </ul>
+      </div>
+      <form class="contacto__form reveal" id="formJardin">
+        <label>Tu nombre
+          <input type="text" name="nombre" placeholder="Ej. Carmen" required>
+        </label>
+        <label>¿Qué necesita tu jardín?
+          <select name="servicio" required>
+            <option value="" disabled selected>Elige una opción…</option>
+            <option>Mantenimiento de césped</option>
+            <option>Flores y diseño</option>
+            <option>Sistema de riego</option>
+            <option>Patio o exteriores</option>
+            <option>Plantación / renovación</option>
+            <option>Limpieza de temporada</option>
+            <option>La verdad, un poco de todo 😅</option>
+          </select>
+        </label>
+        <label>Cuéntanos más (opcional)
+          <textarea name="detalle" rows="3" placeholder="Ej. El pasto está crecido y tengo dos jardineras tristes…"></textarea>
+        </label>
+        <button type="submit" class="btn btn--wa btn--g btn--full">Armar mi WhatsApp →</button>
+        <p class="form__nota">Se abre WhatsApp con tu mensaje listo. Nada de spam, palabra de jardinero. 🌿</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pie">
+    <div class="wrap pie__in">
+      <div class="pie__marca">
+        <span class="logo__hoja">🌿</span>
+        <div>
+          <b>Raíz Verde Landscaping</b>
+          <span>Tu jardín, en buenas manos.</span>
+        </div>
+      </div>
+      <nav class="pie__redes">
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="https://wa.me/5215565595788" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+      <p class="pie__nota">Fotos: colaboradores de Wikimedia Commons (CC BY / CC BY-SA / CC0).</p>
+      <a class="pie__credito" href="https://wa.me/5215565595788?text=Hola%2C%20vi%20el%20demo%20de%20jardiner%C3%ADa%20y%20quiero%20una%20p%C3%A1gina%20as%C3%AD%20para%20mi%20negocio" target="_blank" rel="noopener">
+        Sitio de demostración hecho con 💚 por <b>YM Solutions</b> — ¿quieres uno así para tu negocio?
+      </a>
+    </div>
+  </footer>
+
+  <a class="wa-flot" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20presupuesto%20para%20mi%20jard%C3%ADn%20%F0%9F%8C%BF" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.668-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
