@@ -1,17 +1,8 @@
-# Dependencias
 node_modules/
-
-# Sistema
-Thumbs.db
-desktop.ini
+.next/
+out/
+*.log
+.env*
+next-env.d.ts
 .DS_Store
-
-# Editores
-.vscode/
-.idea/
-
-# Nunca subir material interno de la agencia
-cotizaciones/
-mockups/
-*.xlsx
-*.docx
+*.tsbuildinfo

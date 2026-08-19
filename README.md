@@ -1,41 +1,26 @@
 # YM Solutions — Sitio web
 
-Sitio oficial de **YM Solutions**, agencia de desarrollo de software.
-*Software a la medida de tu negocio.*
+Sitio oficial de **YM Solutions**: agencia de desarrollo de software a la medida.
+Páginas web con WhatsApp, chatbots, interfaces con ERP y automatizaciones.
 
-## Servicios
-- 🌐 Páginas web profesionales
-- 💬 Chatbots de WhatsApp
-- 🔗 Interfaces con ERP
-- ⚙️ Automatización de procesos
-- 🛒 E-commerce
+## Stack
 
-## Tecnología
-Sitio estático: HTML, CSS y JavaScript puro. Sin dependencias ni build.
+- [Next.js 15](https://nextjs.org/) (React 19) — App Router, prerender estático
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Framer Motion](https://motion.dev/) — animaciones
 
-```
-index.html      → estructura y contenido
-css/styles.css  → diseño (tema oscuro, bento grid, responsive)
-js/main.js      → interacciones y formulario → WhatsApp
-assets/         → imagen para redes sociales e ícono
-```
-
-## Desarrollo local
-Cualquier servidor estático funciona:
+## Desarrollo
 
 ```bash
-python -m http.server 8137
+npm install
+npm run dev
 ```
 
-Luego abre http://localhost:8137
+## Deploy
 
-## Despliegue
-Desplegado automáticamente en Vercel con cada push a `main`.
-
-## Contacto
-📲 WhatsApp: 55 6559 5788
-✉️ ymontoya.ymsolutions@gmail.com
-📸 Instagram: [@ym__solutions](https://www.instagram.com/ym__solutions/)
+Pensado para [Vercel](https://vercel.com): importar el repo y listo, sin configuración extra.
 
 ---
-© 2026 YM Solutions · Naucalpan, Estado de México
+
+📲 55 6559 5788 · ✉️ ymontoya.ymsolutions@gmail.com
