@@ -60,22 +60,27 @@ export function Reveal({
 }
 
 /* ---------- Encabezado de sección ---------- */
+import { WordReveal } from "./Efectos";
+
 export function SectionHead({
   kicker,
   title,
   sub,
+  align = "center",
 }: {
   kicker: string;
-  title: React.ReactNode;
+  title: string;
   sub?: string;
+  align?: "center" | "left";
 }) {
+  const centro = align === "center";
   return (
-    <Reveal className="mx-auto max-w-2xl text-center">
+    <Reveal className={centro ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-1.5 text-xs font-semibold tracking-widest text-brand-cyan uppercase shadow-sm">
         {kicker}
       </p>
       <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.6rem] sm:leading-[1.15]">
-        {title}
+        <WordReveal text={title} />
       </h2>
       {sub && <p className="mt-4 text-lg text-ink-soft">{sub}</p>}
     </Reveal>

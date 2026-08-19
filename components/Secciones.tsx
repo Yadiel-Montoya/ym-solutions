@@ -1,6 +1,7 @@
 "use client";
 
 import { Logo, Reveal, SectionHead, waLink } from "./ui";
+import { TiltCard } from "./Efectos";
 
 /* ============ MARQUEE ============ */
 const items = ["Páginas Web", "Chatbots WhatsApp", "Interfaces con ERP", "Automatización", "E-commerce", "Apps a la medida"];
@@ -8,11 +9,18 @@ const items = ["Páginas Web", "Chatbots WhatsApp", "Interfaces con ERP", "Autom
 export function Marquee() {
   const fila = [...items, ...items];
   return (
-    <div className="overflow-hidden border-y border-line bg-cloud py-4" aria-hidden>
+    <div className="marquee-zone space-y-3 overflow-hidden border-y border-line bg-cloud py-4" aria-hidden>
       <div className="animate-marquee flex w-max items-center gap-8">
         {fila.map((t, i) => (
           <span key={i} className="flex items-center gap-8 whitespace-nowrap font-display text-sm font-semibold tracking-wide text-ink-soft">
             {t} <i className="not-italic text-brand-cyan">◆</i>
+          </span>
+        ))}
+      </div>
+      <div className="animate-marquee-rev flex w-max items-center gap-8 opacity-60">
+        {fila.map((t, i) => (
+          <span key={i} className="flex items-center gap-8 whitespace-nowrap font-display text-sm font-semibold tracking-wide text-ink-soft">
+            {t} <i className="not-italic text-brand-violet">◆</i>
           </span>
         ))}
       </div>
@@ -46,18 +54,12 @@ export function Servicios() {
     <section id="servicios" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24">
       <SectionHead
         kicker="Qué hacemos"
-        title={
-          <>
-            Cinco formas de quitarle
-            <br />
-            trabajo manual a tu negocio
-          </>
-        }
+        title="Cinco formas de quitarle trabajo manual a tu negocio"
       />
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {servicios.map((s, i) => (
           <Reveal key={s.titulo} delay={i * 0.06} className={s.xl ? "sm:col-span-2 lg:row-span-2" : ""}>
-            <article className="card-glow flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-sm">
+            <TiltCard className="flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-sm">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-violet-50 text-2xl">
                 {s.icon}
               </div>
@@ -72,11 +74,11 @@ export function Servicios() {
                   ))}
                 </div>
               )}
-            </article>
+            </TiltCard>
           </Reveal>
         ))}
         <Reveal delay={0.3} className="sm:col-span-2">
-          <article className="card-glow flex h-full flex-col rounded-3xl border border-line bg-gradient-to-br from-cloud to-white p-7 shadow-sm">
+          <TiltCard className="flex h-full flex-col rounded-3xl border border-line bg-gradient-to-br from-cloud to-white p-7 shadow-sm">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-violet-50 text-2xl">🚀</div>
             <h3 className="font-display mb-2 text-xl font-bold text-ink">¿Y si lo tuyo no está en la lista?</h3>
             <p className="text-[15px] leading-relaxed text-ink-soft">
@@ -92,7 +94,7 @@ export function Servicios() {
             >
               Cuéntanos tu caso →
             </a>
-          </article>
+          </TiltCard>
         </Reveal>
       </div>
     </section>
@@ -121,7 +123,7 @@ export function Sectores() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {sectores.map((s, i) => (
             <Reveal key={s.titulo} delay={i * 0.05}>
-              <article className="card-glow flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-sm">
+              <TiltCard className="flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-sm">
                 <span className="mb-3 text-3xl">{s.icon}</span>
                 <h3 className="font-display mb-2 text-lg font-bold text-ink">{s.titulo}</h3>
                 <p className="flex-1 text-[15px] leading-relaxed text-ink-soft">{s.texto}</p>
@@ -133,7 +135,7 @@ export function Sectores() {
                 >
                   Este soy yo →
                 </a>
-              </article>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
@@ -168,12 +170,12 @@ export function Proceso() {
       <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {pasos.map((p, i) => (
           <Reveal key={p.titulo} delay={i * 0.08}>
-            <li className="card-glow h-full rounded-3xl border border-line bg-white p-7 shadow-sm">
+            <li className="h-full"><TiltCard className="h-full rounded-3xl border border-line bg-white p-7 shadow-sm">
               <span className="font-display gradient-text text-4xl font-bold">0{i + 1}</span>
               <span className="mt-3 block w-fit rounded-full bg-cloud px-3 py-1 text-xs font-medium text-ink-soft">{p.tiempo}</span>
               <h3 className="font-display mt-3 mb-2 text-lg font-bold text-ink">{p.titulo}</h3>
               <p className="text-[15px] leading-relaxed text-ink-soft">{p.texto}</p>
-            </li>
+            </TiltCard></li>
           </Reveal>
         ))}
       </ol>
@@ -197,11 +199,11 @@ export function Compromisos() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {promesas.map((p, i) => (
             <Reveal key={p.titulo} delay={i * 0.08}>
-              <div className="card-glow h-full rounded-3xl border border-line bg-white p-7 text-center shadow-sm">
+              <TiltCard className="h-full rounded-3xl border border-line bg-white p-7 text-center shadow-sm">
                 <i className="mb-3 block text-3xl not-italic">{p.icon}</i>
                 <h3 className="font-display mb-2 text-lg font-bold text-ink">{p.titulo}</h3>
                 <p className="text-[15px] leading-relaxed text-ink-soft">{p.texto}</p>
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

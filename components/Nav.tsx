@@ -5,9 +5,9 @@ import { Logo, WaIcon, waLink } from "./ui";
 
 const links = [
   { href: "#servicios", label: "Qué hacemos" },
+  { href: "#demo", label: "🤖 Pruébalo" },
   { href: "#sectores", label: "Para quién" },
   { href: "#proceso", label: "Cómo trabajamos" },
-  { href: "#faq", label: "Preguntas" },
   { href: "#contacto", label: "Contacto" },
 ];
 
