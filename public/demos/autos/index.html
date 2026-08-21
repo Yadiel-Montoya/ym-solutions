@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoNova Seminuevos — Certificados y con garantía</title>
+  <meta name="description" content="Seminuevos certificados con 150 puntos de inspección, garantía de 1 año y financiamiento a tu medida. Demo creada por YM Solutions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='75' font-size='75'%3E%F0%9F%8F%81%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="wrap nav__in">
+      <a href="#" class="logo">AUTO<span>NOVA</span><i>seminuevos</i></a>
+      <nav class="nav__links">
+        <a href="#inventario">Inventario</a>
+        <a href="#financiamiento">Financiamiento</a>
+        <a href="#proceso">Cómo comprar</a>
+        <a href="#opiniones">Opiniones</a>
+      </nav>
+      <a class="btn btn--wa" href="https://wa.me/5215565595788?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20AutoNova%20y%20quiero%20informes%20%F0%9F%9A%97" target="_blank" rel="noopener">
+        WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- ============ HERO SLIDER ============ -->
+  <section class="hero">
+    <div class="swiper hero-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide hero__slide">
+          <img src="img/deportivo-rojo.jpg" alt="Deportivo seminuevo certificado">
+          <div class="hero__velo"></div>
+          <div class="wrap hero__copy">
+            <p class="hero__tag">🏁 Seminuevos certificados</p>
+            <h1>El auto que quieres,<br><span>sin la letra chiquita.</span></h1>
+            <p class="hero__sub">150 puntos de inspección · Garantía de 1 año · Financiamiento en 24 horas</p>
+            <div class="hero__cta">
+              <a href="#inventario" class="btn btn--rojo">Ver inventario</a>
+              <a href="#financiamiento" class="btn btn--ghost">Calcular mi mensualidad</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide hero__slide">
+          <img src="img/suv-negra.jpg" alt="SUV seminueva">
+          <div class="hero__velo"></div>
+          <div class="wrap hero__copy">
+            <p class="hero__tag">🛡️ Garantía real de 1 año</p>
+            <h1>SUVs listas para<br><span>tu siguiente aventura.</span></h1>
+            <p class="hero__sub">Cada unidad pasa 150 puntos de inspección antes de llegar al piso de venta</p>
+            <div class="hero__cta">
+              <a href="#inventario" class="btn btn--rojo">Ver SUVs</a>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide hero__slide">
+          <img src="img/pickup.jpg" alt="Pickup de trabajo">
+          <div class="hero__velo"></div>
+          <div class="wrap hero__copy">
+            <p class="hero__tag">💪 Para trabajar duro</p>
+            <h1>Pickups que ya<br><span>demostraron de qué están hechas.</span></h1>
+            <p class="hero__sub">Historial verificado, sin adeudos y con factura original</p>
+            <div class="hero__cta">
+              <a href="#inventario" class="btn btn--rojo">Ver pickups</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- ============ BARRA DE CONFIANZA ============ -->
+  <section class="confianza">
+    <div class="wrap confianza__grid">
+      <div data-aos="fade-up"><b>150</b><span>puntos de inspección</span></div>
+      <div data-aos="fade-up" data-aos-delay="80"><b>1 año</b><span>de garantía incluida</span></div>
+      <div data-aos="fade-up" data-aos-delay="160"><b>24 h</b><span>respuesta de financiamiento</span></div>
+      <div data-aos="fade-up" data-aos-delay="240"><b>0</b><span>autos con adeudos o clonados</span></div>
+    </div>
+  </section>
+
+  <!-- ============ INVENTARIO ============ -->
+  <section class="seccion" id="inventario">
+    <div class="wrap">
+      <p class="kicker" data-aos="fade-up">Inventario</p>
+      <h2 data-aos="fade-up">Unidades <span>disponibles hoy</span></h2>
+      <div class="filtros" data-aos="fade-up" id="filtros">
+        <button class="filtro activo" data-tipo="todos">Todos</button>
+        <button class="filtro" data-tipo="suv">SUV</button>
+        <button class="filtro" data-tipo="sedan">Sedán</button>
+        <button class="filtro" data-tipo="pickup">Pickup</button>
+        <button class="filtro" data-tipo="deportivo">Deportivo</button>
+      </div>
+      <div class="autos" id="autos"></div>
+    </div>
+  </section>
+
+  <!-- ============ CALCULADORA ============ -->
+  <section class="seccion seccion--calc" id="financiamiento">
+    <div class="wrap calc__grid">
+      <div data-aos="fade-right">
+        <p class="kicker">Financiamiento</p>
+        <h2>Calcula tu mensualidad<br><span>en 10 segundos</span></h2>
+        <p class="parrafo">Mueve los controles y mira tu mensualidad en tiempo real. Sin comprometerte a nada, sin dejar tus datos, sin llamadas de un call center.</p>
+        <ul class="calc__puntos">
+          <li>✓ Aprobación en 24 horas hábiles</li>
+          <li>✓ Con o sin historial crediticio</li>
+          <li>✓ Recibimos tu auto actual a cuenta</li>
+        </ul>
+      </div>
+      <div class="calc" data-aos="fade-left">
+        <label class="calc__campo">
+          <span>Elige tu auto</span>
+          <select id="calcAuto"></select>
+        </label>
+        <label class="calc__campo">
+          <span>Enganche: <b id="engancheTxt">20%</b></span>
+          <input type="range" id="calcEnganche" min="10" max="60" value="20" step="5">
+        </label>
+        <div class="calc__campo">
+          <span>Plazo en meses</span>
+          <div class="plazos" id="plazos">
+            <button data-m="12">12</button>
+            <button data-m="24">24</button>
+            <button class="activo" data-m="36">36</button>
+            <button data-m="48">48</button>
+          </div>
+        </div>
+        <div class="calc__resultado">
+          <span>Tu mensualidad estimada*</span>
+          <b id="mensualidad">$0</b>
+          <small id="calcDetalle"></small>
+        </div>
+        <a class="btn btn--rojo btn--full" id="calcWa" href="#" target="_blank" rel="noopener">Quiero este plan → WhatsApp</a>
+        <p class="calc__nota">*Estimación informativa con tasa promedio del 13.9% anual. La tasa final depende de tu buró.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section class="seccion" id="proceso">
+    <div class="wrap">
+      <p class="kicker" data-aos="fade-up">Cómo comprar</p>
+      <h2 data-aos="fade-up">Tres pasos y <span>te llevas las llaves</span></h2>
+      <div class="pasos">
+        <div class="paso" data-aos="fade-up"><i>01</i><h3>Apártalo por WhatsApp</h3><p>Nos dices qué unidad te gustó y te la apartamos 48 horas sin costo. Nadie más la puede comprar mientras la ves.</p></div>
+        <div class="paso" data-aos="fade-up" data-aos-delay="100"><i>02</i><h3>Pruébala sin compromiso</h3><p>Agenda tu prueba de manejo. Revisa el auto con tu mecánico si quieres — no tenemos nada que esconder.</p></div>
+        <div class="paso" data-aos="fade-up" data-aos-delay="200"><i>03</i><h3>Estrena en 24 horas</h3><p>Financiamiento aprobado, papeleo listo y placas en regla. Te llevas las llaves y nosotros el pendiente.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPINIONES ============ -->
+  <section class="seccion seccion--opiniones" id="opiniones">
+    <div class="wrap">
+      <p class="kicker" data-aos="fade-up">Opiniones</p>
+      <h2 data-aos="fade-up">Lo que dicen <span>los que ya estrenaron</span></h2>
+      <div class="opiniones">
+        <figure class="opinion" data-aos="fade-up"><blockquote>"Llevé mi mecánico de confianza y el auto estaba impecable, tal como lo anunciaban. Cero sorpresas."</blockquote><figcaption>Carlos M. · Jetta Clásico 2015</figcaption></figure>
+        <figure class="opinion" data-aos="fade-up" data-aos-delay="100"><blockquote>"Me aprobaron el financiamiento en un día y me recibieron mi auto anterior a buen precio."</blockquote><figcaption>Fernanda R. · CX-5 2020</figcaption></figure>
+        <figure class="opinion" data-aos="fade-up" data-aos-delay="200"><blockquote>"Todo por WhatsApp: aparté, agendé la prueba y firmé. En dos días ya traía la camioneta."</blockquote><figcaption>Luis T. · Hilux 2020</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section class="cierre">
+    <div class="wrap cierre__in" data-aos="zoom-in">
+      <h2>Tu próximo auto ya está aquí.<br><span>Ven a conocerlo.</span></h2>
+      <a class="btn btn--rojo btn--xl" href="https://wa.me/5215565595788?text=Hola%2C%20quiero%20agendar%20una%20visita%20a%20AutoNova%20%F0%9F%9A%97" target="_blank" rel="noopener">Agendar visita por WhatsApp</a>
+      <p>Av. de los Motores 123, Naucalpan · Lun a Dom 9:00 – 19:00</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <div class="wrap pie__in">
+      <span class="logo">AUTO<span>NOVA</span></span>
+      <p>Sitio de demostración creado por <a href="https://github.com/Yadiel-Montoya/ym-solutions" target="_blank" rel="noopener">YM Solutions</a> · Fotos: Wikimedia Commons (CC)</p>
+    </div>
+  </footer>
+
+  <a class="wa-flotante" href="https://wa.me/5215565595788?text=Hola%2C%20vengo%20de%20la%20p%C3%A1gina%20de%20AutoNova%20%F0%9F%9A%97" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.668-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
