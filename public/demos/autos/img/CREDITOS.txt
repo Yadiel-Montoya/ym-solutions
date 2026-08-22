@@ -5,3 +5,7 @@ hatchback.jpg: 1992 Volkswagen Golf GTI 8V (US) - Red, interior.jpg (Wikimedia C
 suv-familiar.jpg: Nissan X-Trail 2.5 4x4 Acenta (2019) (52716174310).jpg (Wikimedia Commons)
 showroom.jpg: PACKARD 120 CONVERTIBLE COUPE (1939) (50072477626).jpg (Wikimedia Commons)
 deportivo-rojo.jpg: 2018 Ford Mustang GT 5.0.jpg (Wikimedia Commons)
+jeep.jpg: 2021 Jeep Gladiator Mojave.jpg (Wikimedia Commons)
+bmw.jpg: 2021 BMW M4 Competition.jpg (Wikimedia Commons)
+f150.jpg: Small team gets BLM firetrucks to America’s wildfires (22845681791).jpg (Wikimedia Commons)
+porsche.jpg: Porsche Macan (2019) (53130794578).jpg (Wikimedia Commons)
