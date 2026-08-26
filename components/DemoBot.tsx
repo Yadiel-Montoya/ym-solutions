@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Reveal, SectionHead, waLink } from "./ui";
+import { Reveal, Titulo, waLink } from "./ui";
+import { IconFlecha, IconWhatsApp } from "./Icons";
 
 /* ============================================================
-   DEMO INTERACTIVO: un chatbot de WhatsApp que el visitante
-   puede probar en vivo — el mejor vendedor del servicio.
+   Demo real: un chatbot de WhatsApp que el visitante puede usar.
+   No es un video ni una imagen — es la pieza funcionando.
    ============================================================ */
 
 type Msg = { de: "bot" | "user"; texto: string };
@@ -14,15 +15,16 @@ type Nodo = { respuesta: string; opciones: { label: string; siguiente: string }[
 
 const flujo: Record<string, Nodo> = {
   inicio: {
-    respuesta: "¡Hola! 👋 Soy el asistente de Estética Luna (un negocio de ejemplo). Contesto yo solito, las 24 horas. ¿En qué te ayudo?",
+    respuesta:
+      "¡Hola! Soy el asistente de Estética Luna, un negocio de ejemplo. Contesto yo solito, las 24 horas. ¿En qué te ayudo?",
     opciones: [
-      { label: "💇 Agendar una cita", siguiente: "agendar" },
-      { label: "💰 Ver precios", siguiente: "precios" },
-      { label: "🕐 Horarios", siguiente: "horarios" },
+      { label: "Agendar una cita", siguiente: "agendar" },
+      { label: "Ver precios", siguiente: "precios" },
+      { label: "Horarios", siguiente: "horarios" },
     ],
   },
   agendar: {
-    respuesta: "¡Claro que sí! ✨ Para mañana tengo estos espacios disponibles:",
+    respuesta: "¡Claro que sí! Para mañana tengo estos espacios disponibles:",
     opciones: [
       { label: "10:00 am", siguiente: "confirmada" },
       { label: "1:30 pm", siguiente: "confirmada" },
@@ -30,40 +32,47 @@ const flujo: Record<string, Nodo> = {
     ],
   },
   confirmada: {
-    respuesta: "✅ ¡Listo! Tu cita quedó confirmada. Un día antes te mando un recordatorio para que no se te pase. 😉\n\n(Así de fácil sería para TUS clientes)",
+    respuesta:
+      "Listo, tu cita quedó confirmada. Un día antes te mando un recordatorio para que no se te pase.\n\nAsí de fácil sería para TUS clientes.",
     opciones: [
-      { label: "🚀 Quiero esto en mi negocio", siguiente: "cta" },
-      { label: "🔄 Probar otra vez", siguiente: "inicio" },
+      { label: "Quiero esto en mi negocio", siguiente: "cta" },
+      { label: "Probar otra vez", siguiente: "inicio" },
     ],
   },
   precios: {
-    respuesta: "Con gusto 💅 Corte $180 · Tinte desde $650 · Uñas $250 · Peinado $300. ¿Te aparto un lugar?",
+    respuesta: "Con gusto: corte $180 · tinte desde $650 · uñas $250 · peinado $300. ¿Te aparto un lugar?",
     opciones: [
-      { label: "💇 Sí, agendar", siguiente: "agendar" },
-      { label: "🔄 Probar otra vez", siguiente: "inicio" },
+      { label: "Sí, agendar", siguiente: "agendar" },
+      { label: "Probar otra vez", siguiente: "inicio" },
     ],
   },
   horarios: {
-    respuesta: "Abrimos de lunes a sábado, de 10 am a 8 pm 🕐 ¿Quieres que te aparte un lugar antes de que se llene?",
+    respuesta: "Abrimos de lunes a sábado, de 10 am a 8 pm. ¿Quieres que te aparte un lugar antes de que se llene?",
     opciones: [
-      { label: "💇 Sí, agendar", siguiente: "agendar" },
-      { label: "🔄 Probar otra vez", siguiente: "inicio" },
+      { label: "Sí, agendar", siguiente: "agendar" },
+      { label: "Probar otra vez", siguiente: "inicio" },
     ],
   },
 };
 
-function Typing() {
+function Escribiendo() {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
+      exit={{ opacity: 0, scale: 0.9 }}
       className="flex w-fit items-end gap-1 rounded-2xl rounded-bl-sm bg-white px-4 py-3 shadow-sm"
+      aria-label="Escribiendo"
     >
-      <span className="typing-dot h-2 w-2 rounded-full bg-slate-400" />
-      <span className="typing-dot h-2 w-2 rounded-full bg-slate-400" />
-      <span className="typing-dot h-2 w-2 rounded-full bg-slate-400" />
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="h-1.5 w-1.5 rounded-full bg-ink-3"
+          animate={{ opacity: [0.35, 1, 0.35], y: [0, -3, 0] }}
+          transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.16, ease: "easeInOut" }}
+        />
+      ))}
     </motion.div>
   );
 }
@@ -72,27 +81,23 @@ export default function DemoBot() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [nodo, setNodo] = useState<string | null>(null);
   const [typing, setTyping] = useState(false);
-  const [interacciones, setInteracciones] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const irA = (destino: string, labelUsuario?: string) => {
     if (destino === "inicio" && labelUsuario) {
       setMsgs([]);
       setNodo(null);
-      setTimeout(() => arrancar(), 300);
+      setTimeout(arrancar, 280);
       return;
     }
-    if (labelUsuario) {
-      setMsgs((m) => [...m, { de: "user", texto: labelUsuario }]);
-      setInteracciones((v) => v + 1);
-    }
+    if (labelUsuario) setMsgs((m) => [...m, { de: "user", texto: labelUsuario }]);
     setNodo(null);
     setTyping(true);
     setTimeout(() => {
       setTyping(false);
       setMsgs((m) => [...m, { de: "bot", texto: flujo[destino].respuesta }]);
       setNodo(destino);
-    }, 1100);
+    }, 1000);
   };
 
   const arrancar = () => irA("inicio");
@@ -104,81 +109,73 @@ export default function DemoBot() {
   const opciones = nodo ? flujo[nodo].opciones : [];
 
   return (
-    <section id="demo" className="relative scroll-mt-20 overflow-hidden border-y border-line bg-cloud py-24">
-      <div aria-hidden className="absolute inset-0">
-        <div className="blob mesh-a left-[-10%] bottom-[-20%] h-[400px] w-[400px] bg-violet-100" />
-        <div className="blob mesh-b right-[-10%] top-[-15%] h-[400px] w-[400px] bg-cyan-100" />
-      </div>
+    <section id="demo" className="scroll-mt-24 border-y border-rule bg-sunk py-24 sm:py-32">
+      <div className="mx-auto max-w-[1180px] px-6">
+        <Titulo nota="Esto no es un video ni una captura: es un chatbot funcionando dentro de esta página. Tócale y mira cómo agendaría una cita por ti.">
+          Pruébalo tú mismo
+        </Titulo>
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 lg:grid-cols-2">
-        <div>
-          <SectionHead
-            kicker="Pruébalo tú mismo"
-            title="Chatea con un bot de verdad, ahorita"
-            sub="Esto no es un video ni una imagen: es un chatbot funcionando. Tócale y mira cómo agendaría una cita por ti — aunque sean las 3 de la mañana."
-            align="left"
-          />
-          <Reveal delay={0.15}>
-            <ul className="mt-8 space-y-3">
+        <div className="mt-14 grid items-start gap-14 lg:grid-cols-[1fr_auto] lg:gap-20">
+          <Reveal>
+            <dl className="border-t border-rule">
               {[
-                ["🌙", "Contesta cuando tú ya cerraste"],
-                ["📅", "Agenda citas sin que levantes un dedo"],
-                ["🔔", "Manda recordatorios solo — adiós citas olvidadas"],
-                ["🧠", "Se personaliza con los precios y horarios de TU negocio"],
-              ].map(([e, t]) => (
-                <li key={t} className="flex items-center gap-3 text-[15px] text-ink-soft">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-line bg-white text-lg shadow-sm">
-                    {e}
-                  </span>
-                  {t}
-                </li>
+                ["Contesta cuando tú ya cerraste", "A las 11 de la noche, en domingo, en tu día de descanso."],
+                ["Agenda sin que levantes un dedo", "El cliente elige su horario y la cita queda hecha."],
+                ["Manda el recordatorio solo", "Un día antes, para que nadie olvide su cita."],
+                ["Habla como tu negocio", "Con tus precios, tus horarios y tu forma de decir las cosas."],
+              ].map(([t, d]) => (
+                <div key={t} className="border-b border-rule py-6">
+                  <dt className="display text-[1.5rem] leading-tight text-ink">{t}</dt>
+                  <dd className="mt-1.5 max-w-[46ch] text-[0.9375rem] leading-relaxed text-ink-2">{d}</dd>
+                </div>
               ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={0.25}>
+            </dl>
+
             <a
-              href={waLink("Hola, probé el chatbot demo de su página y quiero uno para mi negocio 🤖")}
+              href={waLink("Hola, probé el chatbot de tu página y quiero uno para mi negocio")}
               target="_blank"
               rel="noopener"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet px-7 py-3.5 font-semibold text-white shadow-xl shadow-violet-500/25 transition-transform hover:scale-[1.03]"
+              className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
             >
-              Quiero uno así para mi negocio →
+              <IconWhatsApp size={17} />
+              Quiero uno para mi negocio
+              <IconFlecha size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </Reveal>
-        </div>
 
-        {/* Teléfono con el bot vivo */}
-        <Reveal delay={0.1} className="flex justify-center">
-          <div className="ring-pulse w-full max-w-[370px] rounded-[2.4rem] border border-line bg-white p-3 shadow-2xl shadow-slate-300/70">
-            <div className="overflow-hidden rounded-[1.9rem] border border-line">
-              {/* Header WhatsApp */}
+          {/* El teléfono */}
+          <Reveal delay={0.08} className="mx-auto w-full max-w-[370px]">
+            <div className="overflow-hidden rounded-[1.75rem] border border-rule-strong bg-paper">
               <div className="flex items-center gap-3 bg-[#075e54] px-4 py-3">
-                <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-lg">
-                  💇
-                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-[#075e54] bg-green-400" />
-                </div>
-                <div className="leading-tight">
-                  <b className="block text-[15px] text-white">Estética Luna</b>
-                  <span className="text-xs text-green-200">{typing ? "escribiendo…" : "en línea"}</span>
-                </div>
-                <span className="ml-auto rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-bold tracking-wide text-white">
-                  DEMO EN VIVO
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[0.8125rem] font-semibold text-[#075e54]">
+                  EL
+                </span>
+                <span className="leading-tight">
+                  <b className="block text-[0.9375rem] font-medium text-white">Estética Luna</b>
+                  <span className="text-[0.75rem] text-green-200">{typing ? "escribiendo…" : "en línea"}</span>
+                </span>
+                <span className="tag ml-auto rounded-full bg-white/15 px-2.5 py-1 text-[0.625rem] text-white">
+                  DEMO
                 </span>
               </div>
 
-              {/* Conversación */}
-              <div ref={scrollRef} className="chat-wallpaper flex h-[350px] flex-col gap-2 overflow-y-auto p-3">
+              <div
+                ref={scrollRef}
+                className="flex h-[330px] flex-col gap-2 overflow-y-auto bg-[#eae6df] p-3.5"
+                style={{
+                  backgroundImage: "radial-gradient(rgba(18,18,15,0.05) 1px, transparent 1px)",
+                  backgroundSize: "20px 20px",
+                }}
+              >
                 {msgs.length === 0 && !typing && (
-                  <div className="flex h-full flex-col items-center justify-center gap-4">
-                    <motion.button
+                  <div className="flex h-full flex-col items-center justify-center gap-3">
+                    <button
                       onClick={arrancar}
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet px-7 py-3.5 font-semibold text-white shadow-xl shadow-violet-500/30"
+                      className="rounded-full bg-ink px-6 py-3 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
                     >
-                      ▶ Iniciar conversación
-                    </motion.button>
-                    <p className="text-xs text-ink-soft">Toca para ver al bot en acción</p>
+                      Iniciar conversación
+                    </button>
+                    <p className="text-[0.75rem] text-ink-2">Toca para ver al bot en acción</p>
                   </div>
                 )}
                 <AnimatePresence mode="popLayout">
@@ -186,70 +183,55 @@ export default function DemoBot() {
                     <motion.div
                       key={i}
                       layout
-                      initial={{ opacity: 0, y: 14, scale: 0.92 }}
+                      initial={{ opacity: 0, y: 12, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ type: "spring", stiffness: 320, damping: 24 }}
-                      className={`w-fit max-w-[85%] whitespace-pre-line rounded-2xl px-3.5 py-2 text-[13.5px] leading-snug shadow-sm ${
-                        m.de === "bot"
-                          ? "self-start rounded-bl-sm bg-white text-ink"
-                          : "self-end rounded-br-sm bg-[#d9fdd3] text-ink"
+                      transition={{ type: "spring", stiffness: 340, damping: 26 }}
+                      className={`w-fit max-w-[86%] whitespace-pre-line rounded-2xl px-3.5 py-2 text-[0.8125rem] leading-snug text-ink shadow-sm ${
+                        m.de === "bot" ? "self-start rounded-bl-sm bg-white" : "self-end rounded-br-sm bg-[#d9fdd3]"
                       }`}
                     >
                       {m.texto}
                     </motion.div>
                   ))}
-                  {typing && <Typing key="typing" />}
+                  {typing && <Escribiendo key="typing" />}
                 </AnimatePresence>
               </div>
 
-              {/* Opciones de respuesta rápida */}
-              <div className="flex min-h-[64px] flex-wrap items-center justify-center gap-2 border-t border-line bg-white px-3 py-3">
+              <div className="flex min-h-[62px] flex-wrap items-center justify-center gap-2 border-t border-rule bg-paper p-3">
                 <AnimatePresence>
                   {opciones.map((o) =>
                     o.siguiente === "cta" ? (
                       <motion.a
                         key={o.label}
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        href={waLink("Hola, probé el chatbot demo de su página y quiero uno para mi negocio 🤖")}
+                        href={waLink("Hola, probé el chatbot de tu página y quiero uno para mi negocio")}
                         target="_blank"
                         rel="noopener"
-                        className="rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet px-4 py-2 text-[13px] font-semibold text-white shadow-md"
+                        className="rounded-full bg-ink px-4 py-2 text-[0.8125rem] font-medium text-paper"
                       >
                         {o.label}
                       </motion.a>
                     ) : (
                       <motion.button
                         key={o.label}
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        whileTap={{ scale: 0.94 }}
                         onClick={() => irA(o.siguiente, o.label)}
-                        className="rounded-full border border-brand-cyan/40 bg-cyan-50/60 px-4 py-2 text-[13px] font-semibold text-cyan-800 transition-colors hover:bg-cyan-100"
+                        className="rounded-full border border-accent px-4 py-2 text-[0.8125rem] font-medium text-accent transition-colors duration-300 hover:bg-accent-soft"
                       >
                         {o.label}
                       </motion.button>
                     )
                   )}
                 </AnimatePresence>
-                {!nodo && !typing && msgs.length > 0 && <span className="text-xs text-ink-soft">…</span>}
               </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
-
-      {interacciones >= 3 && (
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative mt-10 text-center text-sm font-medium text-ink-soft"
-        >
-          ¿Ya viste qué fácil? 👀 Imagínalo con los datos de <strong className="gradient-text">tu negocio</strong>.
-        </motion.p>
-      )}
     </section>
   );
 }

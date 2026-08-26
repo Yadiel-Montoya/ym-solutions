@@ -1,271 +1,145 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
+import { IconFlecha, IconWhatsApp } from "./Icons";
 import { waLink } from "./ui";
-import { Counter, Magnetic, Typewriter } from "./Efectos";
 
-const palabras = ["negocio", "consultorio", "restaurante", "tienda", "taller", "gimnasio"];
+const giros = ["negocio", "consultorio", "restaurante", "taller", "tienda", "despacho"];
 
-/* ---------- Conversación de WhatsApp que se escribe sola, en loop ---------- */
-type Paso =
-  | { t: "in"; texto: string }
-  | { t: "out"; texto: string }
-  | { t: "typing" }
-  | { t: "badge"; texto: string };
-
-const guion: Paso[] = [
-  { t: "in", texto: "Hola, ¿tienen lugar mañana? 💇" },
-  { t: "typing" },
-  { t: "out", texto: "¡Claro! Tengo 11:00, 1:30 o 5:00 ✨" },
-  { t: "in", texto: "La de 11 porfa 🙌" },
-  { t: "typing" },
-  { t: "out", texto: "✅ Listo, cita confirmada. ¡Te esperamos!" },
-  { t: "badge", texto: "⚡ Agendado en automático · 11:47 PM" },
-];
-
-const tiempos: Record<Paso["t"], number> = { in: 1500, typing: 1300, out: 1700, badge: 3200 };
-
-function ChatVivo() {
-  const [n, setN] = useState(0);
-
+/* Reloj real: el sitio sabe si estás en horario de atención */
+function useEstado() {
+  const [txt, setTxt] = useState("Naucalpan, MX");
+  const [activo, setActivo] = useState(true);
   useEffect(() => {
-    if (n >= guion.length) {
-      const t = setTimeout(() => setN(0), 3600);
-      return () => clearTimeout(t);
-    }
-    const t = setTimeout(() => setN(n + 1), tiempos[guion[n].t]);
-    return () => clearTimeout(t);
-  }, [n]);
-
-  const visibles = guion.slice(0, n + 1).filter((p, i) => !(p.t === "typing" && i < n));
-
-  return (
-    <div className="animate-float-b w-[300px] rounded-3xl border border-line bg-white p-4 shadow-2xl shadow-slate-300/60">
-      <div className="mb-3 flex items-center gap-3">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-cyan-100 to-violet-100 text-lg">
-          💇
-          <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-brand-wa" />
-        </div>
-        <div className="leading-tight">
-          <b className="block text-sm text-ink">Estética Luna</b>
-          <span className="text-xs text-brand-wa">respondiendo en automático</span>
-        </div>
-      </div>
-
-      <div className="chat-wallpaper flex min-h-[240px] flex-col justify-end gap-2 rounded-2xl p-3">
-        <AnimatePresence mode="popLayout">
-          {visibles.map((p, i) =>
-            p.t === "typing" ? (
-              <motion.div
-                key={`ty-${i}`}
-                layout
-                initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                className="flex w-fit items-end gap-1 rounded-2xl rounded-bl-sm bg-white px-4 py-3 shadow-sm"
-              >
-                <span className="typing-dot h-2 w-2 rounded-full bg-slate-400" />
-                <span className="typing-dot h-2 w-2 rounded-full bg-slate-400" />
-                <span className="typing-dot h-2 w-2 rounded-full bg-slate-400" />
-              </motion.div>
-            ) : p.t === "badge" ? (
-              <motion.div
-                key={`b-${i}`}
-                layout
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="mx-auto mt-1 rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet px-4 py-1.5 text-[11.5px] font-semibold text-white shadow-md"
-              >
-                {p.texto}
-              </motion.div>
-            ) : (
-              <motion.div
-                key={`m-${i}`}
-                layout
-                initial={{ opacity: 0, y: 14, scale: 0.92 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ type: "spring", stiffness: 320, damping: 24 }}
-                className={`w-fit max-w-[85%] rounded-2xl px-3.5 py-2 text-[13px] leading-snug shadow-sm ${
-                  p.t === "in"
-                    ? "self-start rounded-bl-sm bg-white text-ink"
-                    : "self-end rounded-br-sm bg-[#d9fdd3] text-ink"
-                }`}
-              >
-                {p.texto}
-              </motion.div>
-            )
-          )}
-        </AnimatePresence>
-      </div>
-    </div>
-  );
+    const tick = () => {
+      const ahora = new Date();
+      const h = ahora.getHours();
+      const abierto = h >= 8 && h < 22;
+      setActivo(abierto);
+      setTxt(
+        `${ahora.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })} en Naucalpan · ${
+          abierto ? "contestando" : "te leo por la mañana"
+        }`
+      );
+    };
+    tick();
+    const id = setInterval(tick, 30000);
+    return () => clearInterval(id);
+  }, []);
+  return { txt, activo };
 }
 
-/* ---------- Código que se "despliega" línea por línea ---------- */
-const lineasCode = [
-  <span key={0}>
-    <span className="text-violet-600">const</span> <span className="text-ink">tuNegocio</span> ={" "}
-    <span className="text-violet-600">await</span> <span className="text-cyan-700">ym</span>.
-    <span className="text-cyan-700">construir</span>({"{"}
-  </span>,
-  <span key={1}>
-    {"  "}web: <span className="text-emerald-600">&apos;moderna y rápida&apos;</span>,
-  </span>,
-  <span key={2}>
-    {"  "}whatsapp: <span className="text-amber-600">true</span>,
-  </span>,
-  <span key={3}>
-    {"  "}erp: <span className="text-emerald-600">&apos;conectado&apos;</span>,
-  </span>,
-  <span key={4}>
-    {"  "}ventas: <span className="text-emerald-600">&apos;en automático&apos;</span>{" "}
-    <span className="text-slate-400">{"// 24/7"}</span>
-  </span>,
-  <span key={5}>{"});"}</span>,
-  <span key={6} className="text-brand-wa">
-    ✓ Desplegado — tu negocio ya vende solo
-  </span>,
-];
-
-function CodeVivo() {
-  const [n, setN] = useState(0);
+function Giro() {
+  const [i, setI] = useState(0);
   useEffect(() => {
-    const t = setTimeout(() => setN((v) => (v >= lineasCode.length ? 0 : v + 1)), n >= lineasCode.length ? 3800 : 520);
-    return () => clearTimeout(t);
-  }, [n]);
-
+    const id = setInterval(() => setI((v) => (v + 1) % giros.length), 2600);
+    return () => clearInterval(id);
+  }, []);
   return (
-    <div className="animate-float-a rounded-2xl border border-line bg-white p-1.5 shadow-2xl shadow-slate-300/60">
-      <div className="flex items-center gap-1.5 rounded-t-xl bg-cloud px-4 py-2.5">
-        <i className="h-2.5 w-2.5 rounded-full bg-red-400" />
-        <i className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-        <i className="h-2.5 w-2.5 rounded-full bg-green-400" />
-        <span className="ml-2 text-xs font-medium text-ink-soft">ym-solutions.dev</span>
-      </div>
-      <div className="min-h-[196px] rounded-b-xl bg-white px-5 py-4 font-mono text-[13.5px] leading-relaxed">
-        {lineasCode.slice(0, n).map((l, i) => (
-          <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}>
-            {l}
-          </motion.div>
-        ))}
-        <span className="caret inline-block h-4 w-[7px] translate-y-0.5 bg-brand-violet/70" />
-      </div>
-    </div>
+    <span className="relative inline-grid align-baseline">
+      {giros.map((g, k) => (
+        <em
+          key={g}
+          aria-hidden={k !== i}
+          className="col-start-1 row-start-1 whitespace-nowrap transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          style={{
+            opacity: k === i ? 1 : 0,
+            transform: k === i ? "none" : "translateY(0.22em)",
+          }}
+        >
+          {g}
+        </em>
+      ))}
+      <span className="invisible col-start-1 row-start-1">consultorio</span>
+    </span>
   );
 }
-
-/* ============ HERO ============ */
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.21, 0.6, 0.35, 1] as const } },
-};
 
 export default function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yBlob = useTransform(scrollYProgress, [0, 1], [0, 160]);
-  const yVisual = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const { txt, activo } = useEstado();
 
   return (
-    <section ref={ref} id="inicio" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      <motion.div aria-hidden style={{ y: yBlob }} className="absolute inset-0 bg-gradient-to-b from-cloud via-white to-white">
-        <div className="blob mesh-a left-[-10%] top-[-15%] h-[460px] w-[460px] bg-cyan-200/70" />
-        <div className="blob mesh-b right-[-8%] top-[5%] h-[420px] w-[420px] bg-violet-200/70" />
-        <div className="blob mesh-c bottom-[-30%] left-[35%] h-[380px] w-[380px] bg-emerald-100/80" />
-        <div className="grid-soft absolute inset-0" />
-      </motion.div>
+    <section id="inicio" className="relative overflow-hidden">
+      <div aria-hidden className="blueprint absolute inset-0" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 lg:grid-cols-[1.05fr_0.95fr]">
-        <motion.div variants={stagger} initial="hidden" animate="show">
-          <motion.p
-            variants={item}
-            className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-line bg-white/80 px-4 py-2 text-[13px] font-medium text-ink-soft shadow-sm backdrop-blur"
+      <div className="relative mx-auto max-w-[1180px] px-6 pt-36 pb-20 sm:pt-44 sm:pb-28">
+        {/* Estado en vivo — dato real, no adorno */}
+        <p className="tag rise flex items-center gap-2.5" style={{ animationDelay: "80ms" }}>
+          <span
+            className={`breathe h-1.5 w-1.5 rounded-full ${activo ? "bg-live" : "bg-ink-3"}`}
+            style={{ animationPlayState: activo ? "running" : "paused" }}
+          />
+          {txt}
+        </p>
+
+        {/* Titular editorial */}
+        <h1 className="display mt-8 text-[clamp(2.75rem,9.4vw,7.5rem)] text-ink">
+          <span className="rise block" style={{ animationDelay: "160ms" }}>
+            Software
+          </span>
+          <span className="rise flex items-baseline gap-[0.25em]" style={{ animationDelay: "260ms" }}>
+            a la medida
+            <span
+              aria-hidden
+              className="draw hidden h-px flex-1 translate-y-[-0.28em] bg-rule-strong sm:block"
+              style={{ animationDelay: "900ms" }}
+            />
+          </span>
+          <span className="rise block text-ink-2" style={{ animationDelay: "360ms" }}>
+            de tu <Giro />
+          </span>
+        </h1>
+
+        <div className="mt-14 grid gap-12 md:grid-cols-[1fr_auto] md:items-end">
+          <p
+            className="rise max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink-2"
+            style={{ animationDelay: "460ms" }}
           >
-            <span className="pulse-dot h-2 w-2 rounded-full bg-brand-wa" />
-            Desarrollo de software · Naucalpan, México
-          </motion.p>
+            Tus clientes ya te buscan en internet. Me encargo de que te encuentren, te
+            escriban por WhatsApp y agenden solos —{" "}
+            <span className="text-ink">mientras tú te dedicas a lo tuyo.</span>
+          </p>
 
-          <motion.h1
-            variants={item}
-            className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-[3.4rem]"
-          >
-            Software <span className="gradient-text">a la medida</span>
-            <br />
-            de tu <Typewriter palabras={palabras} />
-          </motion.h1>
-
-          <motion.p variants={item} className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-            Tus clientes ya te buscan en internet. Nosotros nos encargamos de que te encuentren,
-            te escriban por WhatsApp y agenden solos —{" "}
-            <strong className="text-ink">mientras tú te dedicas a lo tuyo.</strong>
-          </motion.p>
-
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-4">
-            <Magnetic>
-              <a
-                href={waLink("Hola, quiero cotizar un proyecto 🚀")}
-                target="_blank"
-                rel="noopener"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet px-7 py-3.5 text-[15px] font-semibold text-white shadow-xl shadow-violet-500/25"
-              >
-                Platícanos tu idea
-                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </a>
-            </Magnetic>
-            <Magnetic strength={0.2}>
-              <a
-                href="#demo"
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-7 py-3.5 text-[15px] font-semibold text-ink shadow-sm transition-colors hover:border-slate-300 hover:bg-cloud"
-              >
-                🤖 Prueba el chatbot
-              </a>
-            </Magnetic>
-          </motion.div>
-
-          <motion.ul variants={item} className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-            <li>
-              <strong className="font-display block text-2xl font-bold text-ink">
-                <Counter to={24} suffix=" h" />
-              </strong>
-              <span className="text-sm text-ink-soft">y ya tienes respuesta</span>
-            </li>
-            <li>
-              <strong className="font-display block text-2xl font-bold text-ink">0</strong>
-              <span className="text-sm text-ink-soft">letras chiquitas</span>
-            </li>
-            <li>
-              <strong className="font-display block text-2xl font-bold text-ink">1</strong>
-              <span className="text-sm text-ink-soft">persona que te contesta siempre</span>
-            </li>
-          </motion.ul>
-        </motion.div>
-
-        {/* Visual vivo: código desplegándose + chat que se contesta solo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          style={{ y: yVisual }}
-          className="relative hidden select-none lg:block"
-          aria-hidden
-        >
-          <CodeVivo />
-          <div className="absolute -bottom-16 -left-10">
-            <ChatVivo />
+          <div className="rise flex flex-wrap items-center gap-3" style={{ animationDelay: "560ms" }}>
+            <a
+              href={waLink("Hola, quiero platicar un proyecto")}
+              target="_blank"
+              rel="noopener"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
+            >
+              <IconWhatsApp size={17} />
+              Platícame tu idea
+              <IconFlecha
+                size={17}
+                className="transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"
+              />
+            </a>
+            <a
+              href="#servicios"
+              className="link-draw text-[0.9375rem] font-medium text-ink-2 transition-colors hover:text-ink"
+            >
+              Ver qué hago
+            </a>
           </div>
-          <div className="animate-float-a absolute -top-5 right-8 rounded-full border border-line bg-white px-4 py-2 text-[13px] font-medium text-ink shadow-lg">
-            🔗 ERP sincronizado
-          </div>
-          <div className="animate-float-b absolute -right-4 top-[38%] rounded-full border border-line bg-white px-4 py-2 text-[13px] font-medium text-ink shadow-lg">
-            ⚙️ Automatización activa
-          </div>
-        </motion.div>
+        </div>
+      </div>
+
+      {/* Cifras como pie de plano técnico, no como tarjetas */}
+      <div className="relative mx-auto max-w-[1180px] px-6">
+        <div className="rule-tick" />
+        <dl className="grid grid-cols-2 gap-x-8 gap-y-7 py-7 sm:grid-cols-4">
+          {[
+            ["24 h", "y ya tienes respuesta"],
+            ["1 sem", "y tu sitio está en línea"],
+            ["0", "letras chiquitas"],
+            ["1", "persona: la que construye"],
+          ].map(([n, t], i) => (
+            <div key={t} className="rise" style={{ animationDelay: `${700 + i * 70}ms` }}>
+              <dt className="display tabular text-[2rem] leading-none text-ink">{n}</dt>
+              <dd className="mt-2 text-[0.8125rem] leading-snug text-ink-3">{t}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

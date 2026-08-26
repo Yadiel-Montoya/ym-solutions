@@ -1,193 +1,202 @@
 @import "tailwindcss";
 
+/* ============================================================
+   YM SOLUTIONS — mundo visual "editorial de ingeniero"
+   Tipografía grande y precisa · aire generoso · acento quirúrgico
+   ============================================================ */
+
 @theme {
-  --color-brand-cyan: #0891b2;
-  --color-brand-violet: #7c3aed;
-  --color-brand-wa: #16a34a;
-  --color-ink: #0f172a;
-  --color-ink-soft: #55657d;
-  --color-cloud: #f6f8fc;
-  --color-line: #e4eaf2;
-  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  /* Superficies: papel técnico, no blanco de plantilla */
+  --color-paper: #fbfbfa;
+  --color-surface: #ffffff;
+  --color-sunk: #f2f2f0;
+  --color-rule: #e2e2de;
+  --color-rule-strong: #c9c9c3;
+
+  /* Tinta: negro cálido, no #000 */
+  --color-ink: #12120f;
+  --color-ink-2: #46463f;
+  /* 5.2:1 sobre papel — supera el mínimo de cuerpo pequeño */
+  --color-ink-3: #6b6b61;
+
+  /* Acento único, usado con disciplina */
+  --color-accent: #0d5b52;
+  --color-accent-soft: #e6f0ed;
+  --color-signal: #c2410c;
+  --color-live: #15803d;
+
+  --font-display: var(--font-display-face), Georgia, serif;
+  --font-body: var(--font-body-face), system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, monospace;
+
+  --tracking-display: -0.03em;
 }
 
+/* ---------- Base ---------- */
 html {
   scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 body {
-  background: #ffffff;
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
+  font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+/* ---------- Superficies del navegador: parte del diseño ---------- */
 ::selection {
-  background: #cffafe;
-  color: #0e7490;
+  background: var(--color-accent);
+  color: #fff;
+}
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--color-sunk); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule-strong);
+  border: 3px solid var(--color-sunk);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-3); }
+* { scrollbar-color: var(--color-rule-strong) var(--color-sunk); }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-/* ---------- Texto degradado de marca ---------- */
-.gradient-text {
-  background: linear-gradient(100deg, #0891b2, #7c3aed);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+a { text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+
+input, textarea { caret-color: var(--color-accent); }
+input::placeholder, textarea::placeholder { color: var(--color-ink-3); }
+
+/* Numerales alineados en datos */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* ---------- Tipografía de display ---------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+.display em {
+  font-style: italic;
+  font-weight: 400;
 }
 
-/* ---------- Blobs suaves del hero (tema claro) ---------- */
-.blob {
+/* Etiqueta técnica: mono, versalitas, para metadatos reales */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Regla de precisión: el motivo del sistema ---------- */
+.rule-tick {
+  position: relative;
+  height: 1px;
+  background: var(--color-rule);
+}
+.rule-tick::before,
+.rule-tick::after {
+  content: "";
   position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.55;
-  pointer-events: none;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--color-rule-strong);
 }
+.rule-tick::before { left: 0; }
+.rule-tick::after { right: 0; }
 
-/* ---------- Cuadrícula sutil ---------- */
-.grid-soft {
+/* Papel milimétrico: solo bajo el hero, como mesa de trabajo */
+.blueprint {
   background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 75%);
+    linear-gradient(to right, rgba(18, 18, 15, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18, 18, 15, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
 }
 
-/* ---------- Marquee ---------- */
+/* ---------- El momento autorado: el trazo que se dibuja ---------- */
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.draw {
+  transform-origin: left center;
+  animation: draw-line 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Punto de disponibilidad */
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.82); }
+}
+.breathe { animation: breathe 2.6s ease-in-out infinite; }
+
+/* ---------- Enlaces con subrayado que crece ---------- */
+.link-draw {
+  position: relative;
+  display: inline-block;
+}
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ---------- Fila de servicio: la hoja de especificaciones ---------- */
+.spec-row {
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.spec-row:hover {
+  background-color: var(--color-surface);
+}
+.spec-row:hover .spec-index { color: var(--color-accent); }
+.spec-row:hover .spec-arrow { transform: translateX(4px); opacity: 1; }
+.spec-arrow {
+  transform: translateX(-4px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+}
+
+/* ---------- Marquesina ---------- */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee 26s linear infinite;
-}
-
-/* ---------- Flotación suave ---------- */
-@keyframes float-a {
-  0%, 100% { transform: translateY(0) rotate(-1.2deg); }
-  50% { transform: translateY(-14px) rotate(-1.2deg); }
-}
-@keyframes float-b {
-  0%, 100% { transform: translateY(0) rotate(1.5deg); }
-  50% { transform: translateY(-10px) rotate(1.5deg); }
-}
-.animate-float-a { animation: float-a 6s ease-in-out infinite; }
-.animate-float-b { animation: float-b 7s ease-in-out infinite 0.8s; }
-
-/* ---------- Punto pulsante ---------- */
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45); }
-  60% { box-shadow: 0 0 0 8px rgba(22, 163, 74, 0); }
-}
-.pulse-dot {
-  animation: pulse-dot 1.8s ease-out infinite;
-}
-
-/* ---------- Borde degradado en hover de tarjetas ---------- */
-.card-glow {
-  position: relative;
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-}
-.card-glow:hover {
-  transform: translateY(-4px);
-  border-color: transparent;
-  box-shadow:
-    0 0 0 1.5px rgba(8, 145, 178, 0.35),
-    0 18px 44px -14px rgba(124, 58, 237, 0.22);
-}
-
-/* ---------- Tarjeta con luz interior que sigue el cursor ---------- */
-.spot-card {
-  position: relative;
-  overflow: hidden;
-}
-.spot-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    340px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(124, 58, 237, 0.09),
-    rgba(8, 145, 178, 0.05) 45%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-.spot-card:hover::before {
-  opacity: 1;
-}
-.spot-card:hover {
-  box-shadow:
-    0 0 0 1.5px rgba(8, 145, 178, 0.35),
-    0 20px 48px -16px rgba(124, 58, 237, 0.25);
-  border-color: transparent;
-}
-.tilt {
-  transition: transform 0.25s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* ---------- Cursor de máquina de escribir ---------- */
-@keyframes caret-blink {
-  0%, 45% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-.caret {
-  animation: caret-blink 0.9s step-end infinite;
-}
-
-/* ---------- Marquee invertido + pausa al pasar ---------- */
-@keyframes marquee-rev {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-.animate-marquee-rev {
-  animation: marquee-rev 30s linear infinite;
-}
-.marquee-zone:hover .animate-marquee,
-.marquee-zone:hover .animate-marquee-rev {
-  animation-play-state: paused;
-}
-
-/* ---------- Puntitos de "escribiendo…" ---------- */
-@keyframes typing-dot {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-5px); opacity: 1; }
-}
-.typing-dot {
-  animation: typing-dot 1.1s ease-in-out infinite;
-}
-.typing-dot:nth-child(2) { animation-delay: 0.15s; }
-.typing-dot:nth-child(3) { animation-delay: 0.3s; }
-
-/* ---------- Fondo de chat estilo WhatsApp ---------- */
-.chat-wallpaper {
-  background-color: #eae6df;
-  background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1.1px, transparent 1.1px);
-  background-size: 22px 22px;
-}
-
-/* ---------- Anillo pulsante para el teléfono demo ---------- */
-@keyframes ring-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.28); }
-  70% { box-shadow: 0 0 0 26px rgba(124, 58, 237, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
-}
-.ring-pulse {
-  animation: ring-pulse 2.6s ease-out infinite;
-}
-
-/* ---------- Gradiente animado de fondo (hero) ---------- */
-@keyframes mesh-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, -30px) scale(1.08); }
-  66% { transform: translate(-30px, 25px) scale(0.96); }
-}
-.mesh-a { animation: mesh-drift 14s ease-in-out infinite; }
-.mesh-b { animation: mesh-drift 17s ease-in-out infinite reverse; }
-.mesh-c { animation: mesh-drift 21s ease-in-out infinite 2s; }
+.animate-marquee { animation: marquee 42s linear infinite; }
+.marquee-zone:hover .animate-marquee { animation-play-state: paused; }

@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { Reveal, WA, WaIcon, waLink } from "./ui";
+import { useEffect, useState } from "react";
+import { Reveal, WA, waLink } from "./ui";
+import { IconWhatsApp, IconFlecha } from "./Icons";
 
 const intereses = [
-  ["🌐", "Página web"],
-  ["💬", "Chatbot de WhatsApp"],
-  ["🔗", "Interfaz con ERP"],
-  ["⚙️", "Automatización"],
-  ["🛒", "Tienda en línea"],
+  "Página web",
+  "Chatbot de WhatsApp",
+  "Interfaz con ERP",
+  "Automatización",
+  "Tienda en línea",
 ];
 
 function saludo() {
@@ -20,6 +21,7 @@ function saludo() {
 
 export default function Contacto() {
   const [sel, setSel] = useState<string[]>([]);
+  const [enviado, setEnviado] = useState(false);
 
   const toggle = (v: string) =>
     setSel((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
@@ -27,119 +29,110 @@ export default function Contacto() {
   const enviar = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
-    const nombre = fd.get("nombre");
-    const negocio = fd.get("negocio");
-    const mensaje = fd.get("mensaje");
     const lineas = [
-      `${saludo()} 👋 Soy ${nombre}, de ${negocio}.`,
+      `${saludo()}, soy ${fd.get("nombre")} de ${fd.get("negocio")}.`,
       sel.length ? `Me interesa: ${sel.join(", ")}.` : "",
-      `${mensaje}`,
-    ]
-      .filter(Boolean)
-      .join("\n\n");
-    window.open(waLink(lineas), "_blank", "noopener");
+      String(fd.get("mensaje") ?? ""),
+    ].filter(Boolean);
+    window.open(waLink(lineas.join("\n\n")), "_blank", "noopener");
+    setEnviado(true);
   };
 
-  return (
-    <section id="contacto" className="relative scroll-mt-20 overflow-hidden border-t border-line py-24">
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-white to-cloud">
-        <div className="blob left-[-8%] bottom-[-25%] h-[380px] w-[380px] bg-cyan-100" />
-        <div className="blob right-[-8%] top-[-20%] h-[380px] w-[380px] bg-violet-100" />
-      </div>
+  const campo =
+    "mt-2 w-full border-b border-rule-strong bg-transparent pb-2.5 text-[1.0625rem] text-ink outline-none transition-colors duration-300 focus:border-accent";
 
-      <div className="relative mx-auto grid max-w-6xl items-start gap-12 px-5 lg:grid-cols-2">
+  return (
+    <section id="contacto" className="scroll-mt-24 border-t border-rule bg-sunk py-24 sm:py-32">
+      <div className="mx-auto grid max-w-[1180px] gap-16 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
         <Reveal>
-          <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.6rem] sm:leading-[1.15]">
-            Cuéntanos qué traes
-            <br />
-            <span className="gradient-text">en la cabeza</span>
+          <h2 className="display text-[clamp(2.25rem,5.2vw,4rem)] leading-[0.98] text-ink">
+            Cuéntame qué traes <em>en la cabeza</em>
           </h2>
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
-            No necesitas tenerlo todo claro ni saber cómo se llama lo que quieres. Escríbenos con tus
-            palabras y entre los dos lo aterrizamos. Contestamos rápido — casi siempre el mismo día. 😉
+          <p className="mt-6 max-w-[40ch] text-[1.0625rem] leading-relaxed text-ink-2">
+            No necesitas tenerlo claro ni saber cómo se llama lo que quieres. Escríbeme
+            con tus palabras y entre los dos lo aterrizamos.
           </p>
-          <a
-            href={waLink("Hola, quiero cotizar un proyecto 🚀")}
-            target="_blank"
-            rel="noopener"
-            className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-brand-wa px-7 py-3.5 font-semibold text-white shadow-xl shadow-green-600/25 transition-transform hover:scale-[1.03]"
-          >
-            <WaIcon size={20} />
-            Escríbenos por WhatsApp
-          </a>
-          <p className="mt-6 max-w-md text-sm text-ink-soft">
-            ¿Te da flojera escribir todo? Llena esto y{" "}
-            <strong className="text-ink">se convierte solo en un mensaje de WhatsApp</strong>.
-          </p>
+
+          <div className="mt-10 space-y-4">
+            <a
+              href={waLink("Hola, quiero platicar un proyecto")}
+              target="_blank"
+              rel="noopener"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
+            >
+              <IconWhatsApp size={17} />
+              55 6559 5788
+              <IconFlecha size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+            <p className="tag">Respondo el mismo día · Naucalpan, Edo. Méx.</p>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <form
-            onSubmit={enviar}
-            className="rounded-3xl border border-line bg-white p-7 shadow-xl shadow-slate-200/60 sm:p-9"
-          >
-            <label className="block text-sm font-semibold text-ink">
-              Tu nombre
-              <input
-                type="text"
-                name="nombre"
-                required
-                placeholder="Ej. María López"
-                className="mt-2 w-full rounded-xl border border-line bg-cloud px-4 py-3 text-[15px] font-normal text-ink outline-none transition-colors placeholder:text-slate-400 focus:border-brand-cyan focus:bg-white"
-              />
-            </label>
-            <label className="mt-5 block text-sm font-semibold text-ink">
-              Tu negocio
-              <input
-                type="text"
-                name="negocio"
-                required
-                placeholder="Ej. Estética María / Taller / Consultorio…"
-                className="mt-2 w-full rounded-xl border border-line bg-cloud px-4 py-3 text-[15px] font-normal text-ink outline-none transition-colors placeholder:text-slate-400 focus:border-brand-cyan focus:bg-white"
-              />
-            </label>
+        <Reveal delay={0.08}>
+          <form onSubmit={enviar} className="rounded-lg border border-rule bg-paper p-8 sm:p-10">
+            <p className="tag">El formulario se convierte en tu mensaje de WhatsApp</p>
 
-            <fieldset className="mt-5">
-              <legend className="text-sm font-semibold text-ink">
-                ¿Qué te late? <small className="font-normal text-ink-soft">(marca lo que quieras)</small>
+            <div className="mt-9 grid gap-8 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-[0.8125rem] font-medium text-ink-2">Tu nombre</span>
+                <input type="text" name="nombre" required placeholder="María López" className={campo} />
+              </label>
+              <label className="block">
+                <span className="text-[0.8125rem] font-medium text-ink-2">Tu negocio</span>
+                <input type="text" name="negocio" required placeholder="Estética María" className={campo} />
+              </label>
+            </div>
+
+            <fieldset className="mt-9">
+              <legend className="text-[0.8125rem] font-medium text-ink-2">
+                ¿Qué te late? <span className="text-ink-3">(marca lo que quieras)</span>
               </legend>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {intereses.map(([emoji, v]) => (
-                  <button
-                    key={v}
-                    type="button"
-                    onClick={() => toggle(v)}
-                    className={`rounded-full border px-4 py-2 text-[13.5px] font-medium transition-all ${
-                      sel.includes(v)
-                        ? "border-transparent bg-gradient-to-r from-brand-cyan to-brand-violet text-white shadow-md shadow-violet-500/25"
-                        : "border-line bg-cloud text-ink-soft hover:border-slate-300"
-                    }`}
-                  >
-                    {emoji} {v}
-                  </button>
-                ))}
+              <div className="mt-3.5 flex flex-wrap gap-2">
+                {intereses.map((v) => {
+                  const on = sel.includes(v);
+                  return (
+                    <button
+                      key={v}
+                      type="button"
+                      onClick={() => toggle(v)}
+                      aria-pressed={on}
+                      className={`rounded-full border px-4 py-2 text-[0.8125rem] transition-colors duration-300 ${
+                        on
+                          ? "border-accent bg-accent-soft text-accent"
+                          : "border-rule-strong text-ink-2 hover:border-ink-3 hover:text-ink"
+                      }`}
+                    >
+                      {v}
+                    </button>
+                  );
+                })}
               </div>
             </fieldset>
 
-            <label className="mt-5 block text-sm font-semibold text-ink">
-              Cuéntanos un poco
+            <label className="mt-9 block">
+              <span className="text-[0.8125rem] font-medium text-ink-2">Cuéntame un poco</span>
               <textarea
                 name="mensaje"
-                rows={4}
+                rows={3}
                 required
-                placeholder="Ej. Tengo un consultorio y quiero que mis pacientes agenden por WhatsApp sin que yo conteste…"
-                className="mt-2 w-full resize-y rounded-xl border border-line bg-cloud px-4 py-3 text-[15px] font-normal text-ink outline-none transition-colors placeholder:text-slate-400 focus:border-brand-cyan focus:bg-white"
+                placeholder="Tengo un consultorio y quiero que mis pacientes agenden solos…"
+                className={`${campo} resize-none`}
               />
             </label>
 
             <button
               type="submit"
-              className="mt-6 w-full rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet py-4 font-semibold text-white shadow-xl shadow-violet-500/25 transition-transform hover:scale-[1.02]"
+              className="group mt-10 flex w-full items-center justify-center gap-2.5 rounded-full bg-ink py-4 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
             >
-              Enviar por WhatsApp →
+              <IconWhatsApp size={17} />
+              Enviar por WhatsApp
+              <IconFlecha size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
-            <p className="mt-4 text-center text-xs text-ink-soft">
-              Se abre WhatsApp con tu mensaje ya escrito. No guardamos nada ni te mandamos spam.
+
+            <p className="mt-4 text-center text-[0.75rem] text-ink-3" role="status">
+              {enviado
+                ? "Se abrió WhatsApp con tu mensaje. Si no, escríbeme al 55 6559 5788."
+                : "Se abre WhatsApp con tu mensaje ya escrito. No guardo nada ni te mando spam."}
             </p>
           </form>
         </Reveal>
@@ -148,17 +141,30 @@ export default function Contacto() {
   );
 }
 
-/* ---------- Botón flotante de WhatsApp ---------- */
+/* Botón flotante: entra después del hero para no taparlo */
 export function WaFloat() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.85);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <a
-      href={`${WA}?text=${encodeURIComponent("Hola, quiero informes 👋")}`}
+      href={`${WA}?text=${encodeURIComponent("Hola, quiero informes")}`}
       target="_blank"
       rel="noopener"
-      aria-label="Chatear por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-wa text-white shadow-2xl shadow-green-600/40 transition-transform hover:scale-110"
+      aria-label="Escribir por WhatsApp"
+      tabIndex={visible ? 0 : -1}
+      aria-hidden={!visible}
+      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-ink text-paper shadow-[0_6px_24px_-6px_rgba(18,18,15,0.45)] transition-[background-color,transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-accent ${
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
+      }`}
     >
-      <WaIcon size={26} />
+      <IconWhatsApp size={21} />
     </a>
   );
 }

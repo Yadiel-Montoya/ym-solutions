@@ -1,25 +1,44 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
+const body = Inter({
+  subsets: ["latin"],
+  variable: "--font-body-face",
+  display: "swap",
+});
+
+const display = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-display-face",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono-face",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ym-solutions.vercel.app"),
   title: "YM Solutions — Software a la medida de tu negocio",
   description:
-    "Agencia de desarrollo de software: páginas web con WhatsApp, chatbots, interfaces con ERP y automatizaciones. Soluciones claras, sin complicaciones.",
+    "Estudio de desarrollo en Naucalpan: páginas web, chatbots de WhatsApp, interfaces con ERP y automatizaciones. Hablas directo con quien construye tu proyecto.",
   openGraph: {
     title: "YM Solutions — Software a la medida de tu negocio",
     description:
-      "Páginas web, chatbots, interfaces con ERP y automatización. Cotiza gratis por WhatsApp.",
+      "Páginas web, chatbots de WhatsApp, interfaces con ERP y automatización. La primera plática es gratis.",
     type: "website",
+    locale: "es_MX",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image" },
   icons: {
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 114'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230891b2'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M18 80 V28 L48 60 L78 28 V80 M48 60 V94' fill='none' stroke='url(%23g)' stroke-width='11' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 114'%3E%3Cpath d='M18 80 V28 L48 60 L78 28 V80 M48 60 V94' fill='none' stroke='%230d5b52' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
     apple: "/apple-touch-icon.png",
   },
 };
@@ -29,7 +48,7 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: "YM Solutions",
   description:
-    "Agencia de desarrollo de software: páginas web con WhatsApp, chatbots, interfaces con ERP y automatizaciones.",
+    "Estudio de desarrollo de software: páginas web, chatbots de WhatsApp, interfaces con ERP y automatizaciones.",
   slogan: "Software a la medida de tu negocio",
   areaServed: ["México", "Estados Unidos"],
   address: {
@@ -48,8 +67,8 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
-      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="es" className={`${body.variable} ${display.variable} ${mono.variable}`}>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

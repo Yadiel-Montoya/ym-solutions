@@ -1,26 +1,27 @@
 "use client";
 
-import { Logo, Reveal, SectionHead, waLink } from "./ui";
-import { TiltCard } from "./Efectos";
+import { Reveal, Titulo, waLink } from "./ui";
+import {
+  IconSitio, IconChat, IconEnlace, IconEngranes, IconCarrito, IconChispa,
+  IconPulso, IconTijera, IconPlato, IconBalanza, IconCamion, IconTienda,
+  IconFlecha, IconMas, Marca,
+} from "./Icons";
 
-/* ============ MARQUEE ============ */
-const items = ["Páginas Web", "Chatbots WhatsApp", "Interfaces con ERP", "Automatización", "E-commerce", "Apps a la medida"];
+/* ============ MARQUESINA ============ */
+const capacidades = [
+  "Páginas web", "Chatbots de WhatsApp", "Interfaces con ERP",
+  "Automatización", "Tiendas en línea", "Apps a la medida",
+];
 
 export function Marquee() {
-  const fila = [...items, ...items];
+  const fila = [...capacidades, ...capacidades];
   return (
-    <div className="marquee-zone space-y-3 overflow-hidden border-y border-line bg-cloud py-4" aria-hidden>
-      <div className="animate-marquee flex w-max items-center gap-8">
+    <div className="marquee-zone overflow-hidden border-y border-rule bg-sunk py-3.5" aria-hidden>
+      <div className="animate-marquee flex w-max items-center">
         {fila.map((t, i) => (
-          <span key={i} className="flex items-center gap-8 whitespace-nowrap font-display text-sm font-semibold tracking-wide text-ink-soft">
-            {t} <i className="not-italic text-brand-cyan">◆</i>
-          </span>
-        ))}
-      </div>
-      <div className="animate-marquee-rev flex w-max items-center gap-8 opacity-60">
-        {fila.map((t, i) => (
-          <span key={i} className="flex items-center gap-8 whitespace-nowrap font-display text-sm font-semibold tracking-wide text-ink-soft">
-            {t} <i className="not-italic text-brand-violet">◆</i>
+          <span key={i} className="tag flex items-center whitespace-nowrap text-ink-2">
+            {t}
+            <span className="mx-7 h-3 w-px bg-rule-strong" />
           </span>
         ))}
       </div>
@@ -28,126 +29,160 @@ export function Marquee() {
   );
 }
 
-/* ============ SERVICIOS (BENTO) ============ */
+/* ============ SERVICIOS — hoja de especificaciones ============ */
 const servicios = [
   {
-    icon: "🌐",
-    titulo: "Tu página web",
-    texto: (
-      <>
-        Para que cuando alguien te busque en Google, te encuentre — y pueda escribirte, cotizar o
-        agendar <strong className="text-ink">sin salir de WhatsApp</strong>. Se ve bien en celular, carga
-        rápido y no necesitas saber nada de tecnología.
-      </>
-    ),
-    tags: ["Diseño propio", "Se ve bien en celular", "Aparece en Google"],
-    xl: true,
+    Icono: IconSitio,
+    nombre: "Página web",
+    linea: "Para que te encuentren y te escriban sin salir de WhatsApp.",
+    detalle: "Diseño propio · Rápida en celular · Aparece en Google",
+    wa: "Hola, quiero una página web para mi negocio",
   },
-  { icon: "💬", titulo: "Un WhatsApp que contesta solo", texto: "Responde las preguntas de siempre, agenda citas y toma pedidos a las 11 de la noche, cuando tú ya cerraste." },
-  { icon: "🔗", titulo: "Conectar tu sistema", texto: "¿Ya tienes un ERP o un sistema? Lo enlazamos con tu web para que no captures lo mismo dos veces." },
-  { icon: "⚙️", titulo: "Automatizar lo repetitivo", texto: "Ese reporte que haces cada lunes, esos datos que copias a mano, ese aviso que siempre se te olvida. Eso." },
-  { icon: "🛒", titulo: "Vender en línea", texto: "Tu catálogo con carrito y pagos, y cada pedido confirmado por WhatsApp sin que tú muevas un dedo." },
+  {
+    Icono: IconChat,
+    nombre: "WhatsApp que contesta solo",
+    linea: "Responde lo de siempre, agenda citas y toma pedidos a las 11 de la noche.",
+    detalle: "Respuestas a tu giro · Agenda · Recordatorios",
+    wa: "Hola, quiero un chatbot de WhatsApp",
+  },
+  {
+    Icono: IconEnlace,
+    nombre: "Interfaz con tu ERP",
+    linea: "Si ya tienes un sistema, lo enlazo con tu web para no capturar dos veces.",
+    detalle: "SAP · Sistemas propios · APIs",
+    wa: "Hola, quiero conectar mi sistema con mi página",
+  },
+  {
+    Icono: IconEngranes,
+    nombre: "Automatización",
+    linea: "El reporte de cada lunes, los datos que copias a mano, el aviso que se te olvida.",
+    detalle: "Reportes · Correos · Cargas de datos",
+    wa: "Hola, quiero automatizar tareas de mi negocio",
+  },
+  {
+    Icono: IconCarrito,
+    nombre: "Tienda en línea",
+    linea: "Catálogo con carrito y pagos, y cada pedido confirmado por WhatsApp.",
+    detalle: "Mercado Pago · Stripe · Panel propio",
+    wa: "Hola, quiero vender en línea",
+  },
 ];
 
 export function Servicios() {
   return (
-    <section id="servicios" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24">
-      <SectionHead
-        kicker="Qué hacemos"
-        title="Cinco formas de quitarle trabajo manual a tu negocio"
-      />
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="servicios" className="mx-auto max-w-[1180px] scroll-mt-24 px-6 py-24 sm:py-32">
+      <Titulo nota="Cinco formas de quitarle trabajo manual a tu negocio. Si lo tuyo no está aquí, pregúntame: casi siempre se puede.">
+        Qué construyo
+      </Titulo>
+
+      <div className="mt-14 border-t border-rule">
         {servicios.map((s, i) => (
-          <Reveal key={s.titulo} delay={i * 0.06} className={s.xl ? "sm:col-span-2 lg:row-span-2" : ""}>
-            <TiltCard className="flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-sm">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-violet-50 text-2xl">
-                {s.icon}
-              </div>
-              <h3 className="font-display mb-2 text-xl font-bold text-ink">{s.titulo}</h3>
-              <p className="text-[15px] leading-relaxed text-ink-soft">{s.texto}</p>
-              {s.tags && (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {s.tags.map((t) => (
-                    <span key={t} className="rounded-full border border-line bg-cloud px-3 py-1 text-xs font-medium text-ink-soft">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </TiltCard>
-          </Reveal>
-        ))}
-        <Reveal delay={0.3} className="sm:col-span-2">
-          <TiltCard className="flex h-full flex-col rounded-3xl border border-line bg-gradient-to-br from-cloud to-white p-7 shadow-sm">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-50 to-violet-50 text-2xl">🚀</div>
-            <h3 className="font-display mb-2 text-xl font-bold text-ink">¿Y si lo tuyo no está en la lista?</h3>
-            <p className="text-[15px] leading-relaxed text-ink-soft">
-              Pasa seguido. Cuéntanos qué te quita tiempo o qué te gustaría que hiciera tu negocio, y te
-              decimos con honestidad si se puede, cuánto cuesta y cuánto tarda. Si no es para nosotros,
-              también te lo decimos.
-            </p>
+          <Reveal key={s.nombre} delay={i * 0.05}>
             <a
-              href={waLink("Hola, tengo una idea que quiero platicarles")}
+              href={waLink(s.wa)}
               target="_blank"
               rel="noopener"
-              className="mt-4 w-fit font-semibold text-brand-violet transition-colors hover:text-brand-cyan"
+              className="spec-row group grid grid-cols-[auto_1fr] items-start gap-x-5 gap-y-2 border-b border-rule px-3 py-7 sm:grid-cols-[3rem_1fr_auto] sm:gap-x-8 sm:px-5"
             >
-              Cuéntanos tu caso →
+              <span className="spec-index tag tabular pt-1.5 text-ink-3 transition-colors">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+
+              <span className="min-w-0">
+                <span className="flex items-center gap-3">
+                  <s.Icono size={21} className="shrink-0 text-accent" />
+                  <span className="display text-[1.75rem] leading-none text-ink sm:text-[2.125rem]">
+                    {s.nombre}
+                  </span>
+                </span>
+                <span className="mt-2.5 block max-w-[52ch] text-[0.9375rem] leading-relaxed text-ink-2">
+                  {s.linea}
+                </span>
+                <span className="tag mt-2.5 block text-ink-3">{s.detalle}</span>
+              </span>
+
+              <IconFlecha size={22} className="spec-arrow col-start-2 text-accent sm:col-start-3 sm:self-center" />
             </a>
-          </TiltCard>
-        </Reveal>
+          </Reveal>
+        ))}
       </div>
+
+      <Reveal delay={0.1}>
+        <a
+          href={waLink("Hola, tengo una idea que quiero platicarte")}
+          target="_blank"
+          rel="noopener"
+          className="spec-row group flex items-center gap-5 px-3 py-7 sm:px-5"
+        >
+          <IconChispa size={21} className="shrink-0 text-signal" />
+          <span className="min-w-0 flex-1">
+            <span className="display text-[1.5rem] leading-tight text-ink sm:text-[1.875rem]">
+              ¿Y si lo tuyo no está en la lista?
+            </span>
+            <span className="mt-1.5 block max-w-[58ch] text-[0.9375rem] leading-relaxed text-ink-2">
+              Pasa seguido. Cuéntame qué te quita tiempo y te digo con honestidad si se
+              puede, cuánto cuesta y cuánto tarda. Si no es para mí, también te lo digo.
+            </span>
+          </span>
+          <IconFlecha size={22} className="spec-arrow hidden text-signal sm:block" />
+        </a>
+      </Reveal>
     </section>
   );
 }
 
 /* ============ SECTORES ============ */
 const sectores = [
-  { icon: "🩺", titulo: "Consultorios y clínicas", texto: "El paciente escribe a las 9 pm, nadie contesta y se va con otro. Con agenda por WhatsApp, la cita queda hecha esa misma noche.", wa: "Hola, tengo un consultorio y quiero que mis pacientes agenden por WhatsApp" },
-  { icon: "💈", titulo: "Barberías y estéticas", texto: "Citas sin llamadas ni libreta, recordatorio automático el día anterior y menos sillas vacías.", wa: "Hola, tengo una barbería/estética y me interesan las citas automáticas" },
-  { icon: "🌮", titulo: "Restaurantes y fondas", texto: "El viernes a tope: los pedidos entran por WhatsApp, se confirman solos y llegan ordenados a cocina.", wa: "Hola, tengo un restaurante y quiero recibir pedidos por WhatsApp" },
-  { icon: "⚖️", titulo: "Despachos y consultorías", texto: "En asuntos urgentes gana quien contesta primero. Que tu despacho responda y agende aunque estés en audiencia.", wa: "Hola, tengo un despacho y quiero automatizar mis consultas" },
-  { icon: "🚛", titulo: "Transportes y fletes", texto: "Cotizar en un minuto en lugar de en dos horas. Porque el flete es de quien responde primero.", wa: "Hola, tengo una transportista y quiero cotizar automático por WhatsApp" },
-  { icon: "🏪", titulo: "Comercios y tiendas", texto: "Catálogo en línea, pedidos por WhatsApp y pagos sin que tengas que estar pegado al teléfono.", wa: "Hola, tengo una tienda y quiero vender por WhatsApp" },
+  { Icono: IconPulso, nombre: "Consultorios", dolor: "El paciente escribe a las 9 pm, nadie contesta y se va con otro.", arreglo: "Agenda por WhatsApp: la cita queda hecha esa misma noche.", wa: "Hola, tengo un consultorio y quiero que mis pacientes agenden por WhatsApp" },
+  { Icono: IconTijera, nombre: "Barberías y estéticas", dolor: "Llamadas a media hora pico y una libreta que se pierde.", arreglo: "Citas solas, recordatorio el día anterior, menos sillas vacías.", wa: "Hola, tengo una barbería y me interesan las citas automáticas" },
+  { Icono: IconPlato, nombre: "Restaurantes", dolor: "Viernes a tope: el teléfono no para y los pedidos se enciman.", arreglo: "Pedidos por WhatsApp, confirmados solos y ordenados a cocina.", wa: "Hola, tengo un restaurante y quiero recibir pedidos por WhatsApp" },
+  { Icono: IconBalanza, nombre: "Despachos", dolor: "En asuntos urgentes gana quien contesta primero.", arreglo: "Tu despacho responde y agenda aunque estés en audiencia.", wa: "Hola, tengo un despacho y quiero automatizar mis consultas" },
+  { Icono: IconCamion, nombre: "Transportes", dolor: "Cotizar un flete te lleva dos horas de ida y vuelta.", arreglo: "Cotización en un minuto. El flete es de quien responde primero.", wa: "Hola, tengo una transportista y quiero cotizar automático" },
+  { Icono: IconTienda, nombre: "Comercios", dolor: "Vives pegado al teléfono mandando fotos y precios.", arreglo: "Catálogo en línea, pedidos por WhatsApp y pagos sin ti.", wa: "Hola, tengo una tienda y quiero vender por WhatsApp" },
 ];
 
 export function Sectores() {
   return (
-    <section id="sectores" className="scroll-mt-20 border-y border-line bg-cloud py-24">
-      <div className="mx-auto max-w-6xl px-5">
-        <SectionHead
-          kicker="Para quién trabajamos"
-          title="Negocios como el tuyo"
-          sub="Cada giro pierde clientes de una forma distinta. Estos son los que mejor conocemos — y lo que suele resolverles el problema."
-        />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="sectores" className="scroll-mt-24 border-y border-rule bg-sunk py-24 sm:py-32">
+      <div className="mx-auto max-w-[1180px] px-6">
+        <Titulo nota="Cada giro pierde clientes de una forma distinta. Estos son los que mejor conozco.">
+          Con quién trabajo
+        </Titulo>
+
+        <div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
           {sectores.map((s, i) => (
-            <Reveal key={s.titulo} delay={i * 0.05}>
-              <TiltCard className="flex h-full flex-col rounded-3xl border border-line bg-white p-7 shadow-sm">
-                <span className="mb-3 text-3xl">{s.icon}</span>
-                <h3 className="font-display mb-2 text-lg font-bold text-ink">{s.titulo}</h3>
-                <p className="flex-1 text-[15px] leading-relaxed text-ink-soft">{s.texto}</p>
+            <Reveal key={s.nombre} delay={i * 0.04} className="bg-paper">
+              <div className="flex h-full flex-col gap-4 p-7 transition-colors duration-300 hover:bg-surface">
+                <div className="flex items-center gap-3">
+                  <s.Icono size={20} className="text-accent" />
+                  <h3 className="display text-[1.5rem] leading-none text-ink">{s.nombre}</h3>
+                </div>
+                <p className="text-[0.9375rem] leading-relaxed text-ink-3">{s.dolor}</p>
+                <div className="rule-tick" />
+                <p className="text-[0.9375rem] leading-relaxed text-ink">{s.arreglo}</p>
                 <a
                   href={waLink(s.wa)}
                   target="_blank"
                   rel="noopener"
-                  className="mt-4 w-fit text-[15px] font-semibold text-brand-violet transition-colors hover:text-brand-cyan"
+                  className="link-draw mt-auto w-fit pt-2 text-[0.875rem] font-medium text-accent"
                 >
-                  Este soy yo →
+                  Este soy yo
                 </a>
-              </TiltCard>
+              </div>
             </Reveal>
           ))}
         </div>
-        <Reveal className="mt-12 flex flex-col items-center gap-4 text-center">
-          <p className="text-ink-soft">¿No ves tu giro? Tranquilo, casi siempre aplica igual.</p>
+
+        <Reveal delay={0.1} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <p className="text-[0.9375rem] text-ink-2">¿No ves tu giro? Casi siempre aplica igual.</p>
           <a
-            href={waLink("Hola, tengo un negocio y quiero saber cómo me pueden ayudar")}
+            href={waLink("Hola, tengo un negocio y quiero saber cómo me puedes ayudar")}
             target="_blank"
             rel="noopener"
-            className="inline-flex items-center rounded-full bg-gradient-to-r from-brand-cyan to-brand-violet px-7 py-3.5 font-semibold text-white shadow-xl shadow-violet-500/25 transition-transform hover:scale-[1.03]"
+            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-ink"
           >
-            Preguntar por mi negocio
+            <span className="link-draw">Pregúntame por el tuyo</span>
+            <IconFlecha size={17} className="text-accent transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </Reveal>
       </div>
@@ -155,27 +190,29 @@ export function Sectores() {
   );
 }
 
-/* ============ PROCESO ============ */
+/* ============ PROCESO — línea de tiempo real ============ */
 const pasos = [
-  { tiempo: "☕ una plática de 20 min", titulo: "Nos cuentas", texto: "Por WhatsApp o por llamada, como te acomode. Nos platicas cómo funciona tu negocio y qué te está costando trabajo. A veces necesitas menos de lo que creías." },
-  { tiempo: "📄 en 1 día o menos", titulo: "Te cotizamos", texto: "Te llega un PDF con lo que incluye, cuánto cuesta y cuánto tarda. Si algo no se entiende, preguntas y te lo explicamos." },
-  { tiempo: "🔨 2 a 3 semanas", titulo: "Lo construimos", texto: "Vas viendo cómo va cada semana. Y sí, puedes pedir cambios — están incluidas dos rondas de ajustes." },
-  { tiempo: "🤝 para siempre", titulo: "Lo lanzamos… y seguimos ahí", texto: "No desaparecemos al entregar. Si algo falla o quieres cambiar un precio, un horario o una foto, nos escribes y listo." },
+  { t: "Nos sentamos 20 minutos", d: "Por WhatsApp o llamada, como te acomode. Me cuentas cómo funciona tu negocio y qué te cuesta trabajo. A veces necesitas menos de lo que creías.", plazo: "día 0" },
+  { t: "Te cotizo por escrito", d: "Un PDF con lo que incluye, cuánto cuesta y cuándo está. Si algo no se entiende, preguntas y te lo explico sin palabras raras.", plazo: "día 1" },
+  { t: "Lo construyo y lo ves crecer", d: "Te mando un enlace privado para que lo pruebes desde tu celular antes de pagar el resto. Dos rondas de ajustes incluidas.", plazo: "días 2–6" },
+  { t: "Lo publico y sigo aquí", d: "Dominio, hosting y certificado incluidos el primer año. Si algo falla o quieres cambiar un precio, me escribes y ya.", plazo: "día 7" },
 ];
 
 export function Proceso() {
   return (
-    <section id="proceso" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24">
-      <SectionHead kicker="Cómo trabajamos" title="Cuatro pasos y ya" sub="Sin juntas eternas ni palabras raras. Así de simple." />
-      <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <section id="proceso" className="mx-auto max-w-[1180px] scroll-mt-24 px-6 py-24 sm:py-32">
+      <Titulo nota="Sin juntas eternas ni palabras raras. Una semana, de la idea al sitio en línea.">
+        Cómo trabajo
+      </Titulo>
+
+      <ol className="mt-14 grid gap-px overflow-hidden rounded-lg border border-rule bg-rule md:grid-cols-2">
         {pasos.map((p, i) => (
-          <Reveal key={p.titulo} delay={i * 0.08}>
-            <li className="h-full"><TiltCard className="h-full rounded-3xl border border-line bg-white p-7 shadow-sm">
-              <span className="font-display gradient-text text-4xl font-bold">0{i + 1}</span>
-              <span className="mt-3 block w-fit rounded-full bg-cloud px-3 py-1 text-xs font-medium text-ink-soft">{p.tiempo}</span>
-              <h3 className="font-display mt-3 mb-2 text-lg font-bold text-ink">{p.titulo}</h3>
-              <p className="text-[15px] leading-relaxed text-ink-soft">{p.texto}</p>
-            </TiltCard></li>
+          <Reveal key={p.t} delay={i * 0.06} className="bg-paper">
+            <li className="flex h-full flex-col gap-3 p-8">
+              <span className="tag tabular text-accent">{p.plazo}</span>
+              <h3 className="display text-[1.75rem] leading-tight text-ink">{p.t}</h3>
+              <p className="max-w-[48ch] text-[0.9375rem] leading-relaxed text-ink-2">{p.d}</p>
+            </li>
           </Reveal>
         ))}
       </ol>
@@ -185,25 +222,27 @@ export function Proceso() {
 
 /* ============ COMPROMISOS ============ */
 const promesas = [
-  { icon: "⚡", titulo: "Te contestamos rápido", texto: "Escribes hoy, tienes respuesta antes de mañana. Nada de dejarte en visto." },
-  { icon: "🗣️", titulo: "Te hablamos claro", texto: "Nada de “APIs”, “endpoints” ni palabras que solo entendemos nosotros." },
-  { icon: "📄", titulo: "El precio es el precio", texto: "Lo que dice la cotización es lo que pagas. Punto." },
-  { icon: "🤝", titulo: "Hablas con quien lo hace", texto: "Aquí no hay vendedor de por medio: tratas directo con quien construye tu proyecto." },
+  ["Te contesto rápido", "Escribes hoy, tienes respuesta antes de mañana. Nada de dejarte en visto."],
+  ["Te hablo claro", "Nada de “endpoints” ni “APIs”. Si necesitas un glosario, lo estoy haciendo mal."],
+  ["El precio es el precio", "Lo que dice la cotización es lo que pagas. Punto."],
+  ["Hablas con quien lo hace", "Aquí no hay vendedor de por medio: tratas directo con quien construye."],
 ];
 
 export function Compromisos() {
   return (
-    <section className="border-y border-line bg-cloud py-24">
-      <div className="mx-auto max-w-6xl px-5">
-        <SectionHead kicker="Nuestra palabra" title="Lo que sí te podemos prometer" />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {promesas.map((p, i) => (
-            <Reveal key={p.titulo} delay={i * 0.08}>
-              <TiltCard className="h-full rounded-3xl border border-line bg-white p-7 text-center shadow-sm">
-                <i className="mb-3 block text-3xl not-italic">{p.icon}</i>
-                <h3 className="font-display mb-2 text-lg font-bold text-ink">{p.titulo}</h3>
-                <p className="text-[15px] leading-relaxed text-ink-soft">{p.texto}</p>
-              </TiltCard>
+    <section className="border-y border-rule bg-sunk py-24 sm:py-32">
+      <div className="mx-auto max-w-[1180px] px-6">
+        <Titulo>Lo que sí te puedo prometer</Titulo>
+        <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+          {promesas.map(([t, d], i) => (
+            <Reveal key={t} delay={i * 0.06}>
+              <div className="flex gap-5">
+                <span aria-hidden className="mt-2.5 h-px w-9 shrink-0 bg-accent" />
+                <div>
+                  <h3 className="display text-[1.625rem] leading-tight text-ink">{t}</h3>
+                  <p className="mt-2 max-w-[42ch] text-[0.9375rem] leading-relaxed text-ink-2">{d}</p>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -215,24 +254,20 @@ export function Compromisos() {
 /* ============ NOTA DEL FUNDADOR ============ */
 export function Fundador() {
   return (
-    <section className="mx-auto max-w-3xl px-5 py-24">
+    <section className="mx-auto max-w-[1180px] px-6 py-24 sm:py-32">
       <Reveal>
-        <figure className="relative rounded-3xl border border-line bg-gradient-to-br from-white to-cloud p-9 shadow-sm sm:p-12">
-          <div className="gradient-text font-display absolute -top-2 left-8 text-7xl font-bold" aria-hidden>
-            “
-          </div>
-          <blockquote className="pt-6 text-lg leading-relaxed text-ink">
-            Empecé YM Solutions porque veía negocios buenísimos — el taller que sí resuelve, el
-            consultorio donde sí te explican — perdiendo clientes nada más por no estar bien en
-            internet. No me parece justo que la tecnología sea un lujo. Así que la hacemos simple, a
-            la medida y sin cobrarte de más. Escríbeme, y sí:{" "}
-            <strong>el que contesta soy yo.</strong>
+        <figure className="mx-auto max-w-[62ch]">
+          <blockquote className="display text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.18] text-ink">
+            Empecé YM Solutions porque veía negocios buenísimos —el taller que sí resuelve, el
+            consultorio donde sí te explican— perdiendo clientes nada más por no estar bien en
+            internet. No me parece justo que la tecnología sea un lujo. Así que la hago simple,
+            a la medida y sin cobrarte de más. <em>Escríbeme, y sí: el que contesta soy yo.</em>
           </blockquote>
-          <figcaption className="mt-7 flex items-center gap-4">
-            <Logo size={40} />
-            <div className="leading-tight">
-              <strong className="block text-ink">Yadiel Montoya</strong>
-              <span className="text-sm text-ink-soft">Fundador de YM Solutions</span>
+          <figcaption className="mt-10 flex items-center gap-4">
+            <Marca size={26} className="text-accent" />
+            <div className="flex flex-col">
+              <span className="text-[0.9375rem] font-medium text-ink">Yadiel Montoya</span>
+              <span className="tag mt-0.5">Fundador · YM Solutions</span>
             </div>
           </figcaption>
         </figure>
@@ -243,30 +278,35 @@ export function Fundador() {
 
 /* ============ FAQ ============ */
 const faqs = [
-  { q: "¿Cuánto me va a costar?", a: "Depende de lo que necesites: no es lo mismo una página para que te encuentren que una tienda en línea completa. Por eso la primera plática no cuesta nada — nos cuentas qué buscas y te decimos el precio exacto por escrito. Si te parece caro, nos lo dices y vemos qué sí entra en tu presupuesto." },
-  { q: "¿Cuánto se tarda?", a: "Una página normalmente entre 2 y 3 semanas. Si es algo más grande —una tienda, conectar tu sistema— te decimos la fecha desde el principio, antes de que pagues nada." },
-  { q: "No le entiendo nada a la tecnología 😅", a: "Perfecto, para eso estamos. De lo técnico nos encargamos nosotros (el dominio, el hosting, los correos, publicarla). Tú solo cuéntanos de tu negocio, que de eso sabes más que nadie." },
-  { q: "¿Y luego me dejan solo?", a: "No. Tenemos un plan mensual accesible que cubre el hosting, el dominio, los cambios normales (cambiar precios, fotos, horarios) y soporte por WhatsApp. Si prefieres no contratarlo, también está bien: la página es tuya." },
-  { q: "Estoy fuera de México, ¿me pueden atender?", a: "Sí. Trabajamos a distancia con clientes en Estados Unidos y otros países. Todo se lleva por WhatsApp y videollamada, igual de cerca que si estuviéramos a la vuelta." },
+  ["¿Cuánto me va a costar?", "Depende de lo que necesites: no es lo mismo una página para que te encuentren que una tienda en línea completa. La primera plática no cuesta nada — me cuentas qué buscas y te doy el precio exacto por escrito. Si te parece caro, me lo dices y vemos qué sí entra en tu presupuesto."],
+  ["¿Cuánto se tarda?", "Una página normalmente una semana, contada desde que me pasas tus textos y fotos. Si es algo más grande —una tienda, conectar tu sistema— te doy la fecha desde el principio, antes de que pagues nada."],
+  ["No le entiendo nada a la tecnología", "Perfecto, para eso estoy. De lo técnico me encargo yo: el dominio, el hosting, los correos, publicarla. Tú cuéntame de tu negocio, que de eso sabes más que nadie."],
+  ["¿Y luego me dejas solo?", "No. El primer año de dominio y hosting va incluido. Después hay un plan mensual opcional para cambios continuos y soporte — y si no lo contratas, no pasa nada: la página es tuya y sigue funcionando."],
+  ["Estoy fuera de México, ¿me puedes atender?", "Sí. Trabajo a distancia con clientes en Estados Unidos y otros países. Todo por WhatsApp y videollamada, igual de cerca que si estuviera a la vuelta."],
 ];
 
 export function Faq() {
   return (
-    <section id="faq" className="mx-auto max-w-3xl scroll-mt-20 px-5 pb-24">
-      <SectionHead kicker="Preguntas frecuentes" title="Lo que todos nos preguntan" />
-      <Reveal className="mt-10">
-        <div className="divide-y divide-line overflow-hidden rounded-3xl border border-line bg-white shadow-sm">
-          {faqs.map((f) => (
-            <details key={f.q} className="group px-7 py-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-[17px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
-                {f.q}
-                <span className="text-xl text-brand-violet transition-transform group-open:rotate-45">+</span>
+    <section id="faq" className="mx-auto max-w-[1180px] scroll-mt-24 px-6 pb-24 sm:pb-32">
+      <Titulo>Lo que todos me preguntan</Titulo>
+      <div className="mt-14 border-t border-rule">
+        {faqs.map(([q, a], i) => (
+          <Reveal key={q} delay={i * 0.04}>
+            <details className="group border-b border-rule">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                <span className="display text-[1.375rem] leading-tight text-ink sm:text-[1.625rem]">
+                  {q}
+                </span>
+                <IconMas
+                  size={20}
+                  className="shrink-0 text-accent transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-open:rotate-45"
+                />
               </summary>
-              <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{f.a}</p>
+              <p className="max-w-[64ch] pb-7 text-[0.9375rem] leading-relaxed text-ink-2">{a}</p>
             </details>
-          ))}
-        </div>
-      </Reveal>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }
