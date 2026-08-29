@@ -1,4 +1,4 @@
-/* ============ AUTONOVA — lógica de la demo (v2) ============ */
+/* ====== SEMINUEVOS PREMIUM POLANCO — demo por YM Solutions ====== */
 
 const WA = 'https://wa.me/5215565595788';
 const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
@@ -62,21 +62,9 @@ function visibles() {
 function pintarAutos() {
   const lista = visibles();
   resultado.innerHTML = lista.length
-    ? `<b>${lista.length}</b> ${lista.length === 1 ? 'unidad' : 'unidades'} ${lista.length === 1 ? 'encontrada' : 'encontradas'}`
-    : '';
+    ? `<b>${lista.length}</b> ${lista.length === 1 ? 'unidad' : 'unidades'} encontradas`
+    : 'No hay unidades con esos filtros. Prueba subir el presupuesto 👆';
   contAutos.innerHTML = '';
-
-  if (!lista.length) {
-    contAutos.innerHTML = `
-      <div class="vacio">
-        <svg class="ico"><use href="#i-lupa"/></svg>
-        <h3>Ninguna unidad con esos filtros</h3>
-        <p>Prueba subir el presupuesto o quitar la marca. Si buscas algo específico, lo conseguimos por encargo.</p>
-        <a class="btn btn--rojo" target="_blank" rel="noopener"
-           href="${WA}?text=${encodeURIComponent('Hola, busco un auto que no vi en su página. ¿Me ayudan a conseguirlo?')}">Búscamelo por encargo</a>
-      </div>`;
-    return;
-  }
   lista.forEach((a, i) => {
     const el = document.createElement('article');
     el.className = 'auto';
@@ -90,7 +78,7 @@ function pintarAutos() {
       <div class="auto__cuerpo">
         <h3>${a.marca} ${a.nombre} ${a.anio}</h3>
         <div class="auto__specs">
-          <span><svg class="ico"><use href="#i-pin"/></svg> ${a.km.toLocaleString('en-US')} km</span><span><svg class="ico"><use href="#i-motor"/></svg> ${a.motor}</span><span><svg class="ico"><use href="#i-palanca"/></svg> ${a.trans}</span>
+          <span>📍 ${a.km.toLocaleString('en-US')} km</span><span>⚙️ ${a.motor}</span><span>🕹️ ${a.trans}</span>
         </div>
         <div class="auto__pie">
           <div class="auto__precio">${fmt(a.precio)}<small>o desde ${fmt(mensualidad(a.precio, 0.2, 48))}/mes</small></div>
@@ -98,8 +86,8 @@ function pintarAutos() {
              href="${WA}?text=${encodeURIComponent(`Hola, me interesa el ${a.marca} ${a.nombre} ${a.anio} de ${fmt(a.precio)} 🚗 ¿Sigue disponible?`)}">Me interesa</a>
         </div>
         <div class="auto__acciones">
-          <button class="auto__ver" data-ver="${a.id}"><svg class="ico"><use href="#i-ojo"/></svg> Ver detalle</button>
-          <button class="auto__comp ${comparando.has(a.id) ? 'on' : ''}" data-comp="${a.id}"><svg class="ico"><use href="#i-balanza"/></svg> Comparar</button>
+          <button class="auto__ver" data-ver="${a.id}">👁️ Ver detalle</button>
+          <button class="auto__comp ${comparando.has(a.id) ? 'on' : ''}" data-comp="${a.id}">⚖️ Comparar</button>
         </div>
       </div>`;
     contAutos.appendChild(el);
@@ -162,12 +150,12 @@ function abrirModal(id) {
         <div><span>Mensualidad*</span><b>${fmt(mensualidad(a.precio, 0.2, 48))}</b></div>
         <div><span>Garantía</span><b>12 meses</b></div>
       </div>
-      <ul class="modal__extras">${a.extras.map((x) => `<li><svg class="ico"><use href="#i-check"/></svg> ${x}</li>`).join('')}</ul>
+      <ul class="modal__extras">${a.extras.map((x) => `<li>✓ ${x}</li>`).join('')}</ul>
       <div class="modal__cta">
         <a class="btn btn--rojo" target="_blank" rel="noopener"
            href="${WA}?text=${encodeURIComponent(`Hola, quiero apartar el ${a.marca} ${a.nombre} ${a.anio} (${fmt(a.precio)}) 🚗`)}">Apartar por WhatsApp</a>
         <a class="btn btn--ghost" target="_blank" rel="noopener"
-           href="${WA}?text=${encodeURIComponent(`Hola, quiero agendar una prueba de manejo del ${a.marca} ${a.nombre} ${a.anio}`)}">Agendar prueba de manejo</a>
+           href="${WA}?text=${encodeURIComponent(`Hola, quiero agendar una prueba de manejo del ${a.marca} ${a.nombre} ${a.anio} 🔑`)}">Agendar prueba de manejo</a>
       </div>
       <p class="calc__nota">*Con 20% de enganche a 48 meses. Estimación informativa.</p>
     </div>`;
@@ -196,8 +184,8 @@ function pintarComparador() {
   $('navComparaN').textContent = comparando.size;
 
   if (comparando.size < 2) {
-    compCont.innerHTML = `<p class="comp__vacio">Selecciona al menos <b>2 unidades</b> en el inventario para compararlas aquí <svg class="ico"><use href="#i-flecha-arriba"/></svg>️${
-      comparando.size === 1 ? '<br><small>Ya llevas 1 — elige otra</small>' : ''
+    compCont.innerHTML = `<p class="comp__vacio">Selecciona al menos <b>2 unidades</b> en el inventario para compararlas aquí ⬆️${
+      comparando.size === 1 ? '<br><small>Ya llevas 1 — elige otra 😉</small>' : ''
     }</p>`;
     return;
   }
@@ -257,8 +245,8 @@ document.addEventListener('click', (e) => {
     const id = +comp.dataset.comp;
     if (comparando.has(id)) comparando.delete(id);
     else if (comparando.size >= 3) {
-      comp.textContent = 'Máximo 3 <svg class="ico"><use href="#i-balanza"/></svg>';
-      setTimeout(() => (comp.textContent = '<svg class="ico"><use href="#i-balanza"/></svg> Comparar'), 1400);
+      comp.textContent = 'Máximo 3 ⚖️';
+      setTimeout(() => (comp.textContent = '⚖️ Comparar'), 1400);
       return;
     } else comparando.add(id);
     comp.classList.toggle('on', comparando.has(id));
@@ -388,17 +376,3 @@ new Swiper('.hero-swiper', {
   autoplay: { delay: 4800, disableOnInteraction: false },
   pagination: { el: '.swiper-pagination', clickable: true },
 });
-
-
-/* ---------- Barra de progreso de lectura ---------- */
-(() => {
-  const barra = document.getElementById('progreso');
-  if (!barra) return;
-  const pintar = () => {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    barra.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
-  };
-  pintar();
-  window.addEventListener('scroll', pintar, { passive: true });
-  window.addEventListener('resize', pintar);
-})();
