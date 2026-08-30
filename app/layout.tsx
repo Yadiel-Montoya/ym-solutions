@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const body = Inter({
+const body = DM_Sans({
   subsets: ["latin"],
   variable: "--font-body-face",
   display: "swap",
 });
 
-const display = Instrument_Serif({
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700"],
   variable: "--font-display-face",
   display: "swap",
 });

@@ -109,7 +109,7 @@ export default function DemoBot() {
   const opciones = nodo ? flujo[nodo].opciones : [];
 
   return (
-    <section id="demo" className="scroll-mt-24 border-y border-rule bg-sunk py-24 sm:py-32">
+    <section id="demo" className="relative scroll-mt-24 overflow-hidden border-y border-rule bg-sunk/60 py-24 sm:py-32">
       <div className="mx-auto max-w-[1180px] px-6">
         <Titulo nota="Esto no es un video ni una captura: es un chatbot funcionando dentro de esta página. Tócale y mira cómo agendaría una cita por ti.">
           Pruébalo tú mismo
@@ -135,7 +135,7 @@ export default function DemoBot() {
               href={waLink("Hola, probé el chatbot de tu página y quiero uno para mi negocio")}
               target="_blank"
               rel="noopener"
-              className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
+              className="group mt-9 inline-flex cursor-pointer items-center gap-2.5 rounded-xl bg-accent px-7 py-3.5 text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-8px_rgba(37,99,235,0.55)] transition-transform duration-200 hover:-translate-y-0.5"
             >
               <IconWhatsApp size={17} />
               Quiero uno para mi negocio
@@ -145,7 +145,7 @@ export default function DemoBot() {
 
           {/* El teléfono */}
           <Reveal delay={0.08} className="mx-auto w-full max-w-[370px]">
-            <div className="overflow-hidden rounded-[1.75rem] border border-rule-strong bg-paper">
+            <div className="glass-deep overflow-hidden rounded-[1.75rem]">
               <div className="flex items-center gap-3 bg-[#075e54] px-4 py-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[0.8125rem] font-semibold text-[#075e54]">
                   EL
@@ -171,7 +171,7 @@ export default function DemoBot() {
                   <div className="flex h-full flex-col items-center justify-center gap-3">
                     <button
                       onClick={arrancar}
-                      className="rounded-full bg-ink px-6 py-3 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
+                      className="cursor-pointer rounded-xl bg-accent px-6 py-3 text-[0.9375rem] font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5"
                     >
                       Iniciar conversación
                     </button>
@@ -209,7 +209,7 @@ export default function DemoBot() {
                         href={waLink("Hola, probé el chatbot de tu página y quiero uno para mi negocio")}
                         target="_blank"
                         rel="noopener"
-                        className="rounded-full bg-ink px-4 py-2 text-[0.8125rem] font-medium text-paper"
+                        className="rounded-xl bg-accent px-4 py-2 text-[0.8125rem] font-semibold text-white"
                       >
                         {o.label}
                       </motion.a>

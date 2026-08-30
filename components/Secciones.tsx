@@ -143,16 +143,16 @@ const sectores = [
 
 export function Sectores() {
   return (
-    <section id="sectores" className="scroll-mt-24 border-y border-rule bg-sunk py-24 sm:py-32">
+    <section id="sectores" className="relative scroll-mt-24 overflow-hidden border-y border-rule bg-sunk/60 py-24 sm:py-32">
       <div className="mx-auto max-w-[1180px] px-6">
         <Titulo nota="Cada giro pierde clientes de una forma distinta. Estos son los que mejor conozco.">
           Con quién trabajo
         </Titulo>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {sectores.map((s, i) => (
-            <Reveal key={s.nombre} delay={i * 0.04} className="bg-paper">
-              <div className="flex h-full flex-col gap-4 p-7 transition-colors duration-300 hover:bg-surface">
+            <Reveal key={s.nombre} delay={i * 0.04}>
+              <div className="glass card-glass flex h-full flex-col gap-4 rounded-2xl p-7">
                 <div className="flex items-center gap-3">
                   <s.Icono size={20} className="text-accent" />
                   <h3 className="display text-[1.5rem] leading-none text-ink">{s.nombre}</h3>
@@ -179,7 +179,7 @@ export function Sectores() {
             href={waLink("Hola, tengo un negocio y quiero saber cómo me puedes ayudar")}
             target="_blank"
             rel="noopener"
-            className="group inline-flex items-center gap-2 text-[0.9375rem] font-medium text-ink"
+            className="group inline-flex cursor-pointer items-center gap-2 text-[0.9375rem] font-semibold text-accent"
           >
             <span className="link-draw">Pregúntame por el tuyo</span>
             <IconFlecha size={17} className="text-accent transition-transform duration-300 group-hover:translate-x-1" />
@@ -205,10 +205,10 @@ export function Proceso() {
         Cómo trabajo
       </Titulo>
 
-      <ol className="mt-14 grid gap-px overflow-hidden rounded-lg border border-rule bg-rule md:grid-cols-2">
+      <ol className="mt-14 grid gap-5 md:grid-cols-2">
         {pasos.map((p, i) => (
-          <Reveal key={p.t} delay={i * 0.06} className="bg-paper">
-            <li className="flex h-full flex-col gap-3 p-8">
+          <Reveal key={p.t} delay={i * 0.06}>
+            <li className="glass card-glass flex h-full flex-col gap-3 rounded-2xl p-8">
               <span className="tag tabular text-accent">{p.plazo}</span>
               <h3 className="display text-[1.75rem] leading-tight text-ink">{p.t}</h3>
               <p className="max-w-[48ch] text-[0.9375rem] leading-relaxed text-ink-2">{p.d}</p>

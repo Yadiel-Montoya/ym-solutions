@@ -30,7 +30,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-500 ${
-        fijo ? "border-b border-rule bg-paper/92 backdrop-blur-sm" : "border-b border-transparent"
+        fijo ? "glass border-b-0" : "border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex h-[68px] max-w-[1180px] items-center justify-between px-6">
@@ -54,7 +54,7 @@ export default function Nav() {
             href={waLink("Hola, quiero platicar un proyecto")}
             target="_blank"
             rel="noopener"
-            className="hidden items-center gap-2 rounded-full border border-rule-strong px-5 py-2 text-[0.875rem] font-medium text-ink transition-colors duration-300 hover:border-accent hover:text-accent sm:inline-flex"
+            className="hidden cursor-pointer items-center gap-2 rounded-xl bg-accent px-5 py-2 text-[0.875rem] font-semibold text-white shadow-[0_6px_18px_-6px_rgba(37,99,235,0.55)] transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
           >
             <IconWhatsApp size={15} />
             Escríbeme

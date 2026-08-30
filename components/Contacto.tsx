@@ -42,7 +42,8 @@ export default function Contacto() {
     "mt-2 w-full border-b border-rule-strong bg-transparent pb-2.5 text-[1.0625rem] text-ink outline-none transition-colors duration-300 focus:border-accent";
 
   return (
-    <section id="contacto" className="scroll-mt-24 border-t border-rule bg-sunk py-24 sm:py-32">
+    <section id="contacto" className="relative scroll-mt-24 overflow-hidden border-t border-rule py-24 sm:py-32">
+      <div aria-hidden className="mesh" />
       <div className="mx-auto grid max-w-[1180px] gap-16 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
         <Reveal>
           <h2 className="display text-[clamp(2.25rem,5.2vw,4rem)] leading-[0.98] text-ink">
@@ -58,7 +59,7 @@ export default function Contacto() {
               href={waLink("Hola, quiero platicar un proyecto")}
               target="_blank"
               rel="noopener"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
+              className="group inline-flex cursor-pointer items-center gap-2.5 rounded-xl bg-accent px-7 py-3.5 text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-8px_rgba(37,99,235,0.55)] transition-transform duration-200 hover:-translate-y-0.5"
             >
               <IconWhatsApp size={17} />
               55 6559 5788
@@ -69,7 +70,7 @@ export default function Contacto() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <form onSubmit={enviar} className="rounded-lg border border-rule bg-paper p-8 sm:p-10">
+          <form onSubmit={enviar} className="glass-deep rounded-2xl p-8 sm:p-10">
             <p className="tag">El formulario se convierte en tu mensaje de WhatsApp</p>
 
             <div className="mt-9 grid gap-8 sm:grid-cols-2">
@@ -122,7 +123,7 @@ export default function Contacto() {
 
             <button
               type="submit"
-              className="group mt-10 flex w-full items-center justify-center gap-2.5 rounded-full bg-ink py-4 text-[0.9375rem] font-medium text-paper transition-colors duration-300 hover:bg-accent"
+              className="group mt-10 flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-accent py-4 text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-8px_rgba(37,99,235,0.55)] transition-transform duration-200 hover:-translate-y-0.5"
             >
               <IconWhatsApp size={17} />
               Enviar por WhatsApp
