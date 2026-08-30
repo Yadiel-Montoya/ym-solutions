@@ -86,64 +86,28 @@ function Terminal({ hora, activo }: { hora: string; activo: boolean }) {
   );
 }
 
-export default function Hero() {
+export default function SistemaVivo() {
   const { hora, activo } = useEstado();
 
   return (
-    <section id="inicio" className="relative overflow-hidden">
+    <section id="sistema" className="relative scroll-mt-24 overflow-hidden border-b border-rule">
       <div aria-hidden className="mesh" />
       <div aria-hidden className="grid-tech absolute inset-0" />
 
-      <div className="relative mx-auto grid max-w-[1180px] items-center gap-14 px-6 pt-36 pb-16 sm:pt-40 sm:pb-24 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative mx-auto grid max-w-[1180px] items-center gap-14 px-6 py-24 sm:py-32 lg:grid-cols-[1fr_auto]">
         <div>
-          <p className="tag rise flex items-center gap-2.5" style={{ animationDelay: "60ms" }}>
-            <span className={`breathe h-1.5 w-1.5 rounded-full ${activo ? "bg-live" : "bg-ink-3"}`} />
-            Desarrollo de software · Naucalpan, MX
+          <h2 className="display text-[clamp(2rem,4.6vw,3.4rem)] text-ink">
+            Esto es lo que instalo<br />en tu negocio
+          </h2>
+          <p className="mt-5 max-w-[44ch] text-[1.0625rem] leading-relaxed text-ink-2">
+            No es solo una página: es un sistema que recibe al cliente, contesta,
+            agenda y te avisa. Así se ve corriendo — con la hora real de ahorita.
           </p>
-
-          <h1 className="display rise mt-6 text-[clamp(2.4rem,5.6vw,4.1rem)] text-ink" style={{ animationDelay: "140ms" }}>
-            Software a la medida
-            <br />
-            de tu <Giro />
-          </h1>
-
-          <p className="rise mt-6 max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink-2" style={{ animationDelay: "240ms" }}>
-            Tus clientes ya te buscan en internet. Me encargo de que te encuentren, te
-            escriban por WhatsApp y agenden solos —{" "}
-            <span className="font-medium text-ink">mientras tú te dedicas a lo tuyo.</span>
-          </p>
-
-          <div className="rise mt-8 flex flex-wrap items-center gap-4" style={{ animationDelay: "340ms" }}>
-            <a
-              href={waLink("Hola, quiero platicar un proyecto")}
-              target="_blank"
-              rel="noopener"
-              className="group inline-flex cursor-pointer items-center gap-2.5 rounded-xl bg-accent px-7 py-3.5 text-[0.9375rem] font-semibold text-white shadow-[0_10px_28px_-8px_rgba(37,99,235,0.55)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_14px_34px_-8px_rgba(37,99,235,0.65)]"
-            >
-              <IconWhatsApp size={17} />
-              Platícame tu idea
-              <IconFlecha size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-            <a href="#demo" className="link-draw cursor-pointer text-[0.9375rem] font-medium text-ink-2 transition-colors hover:text-ink">
-              Prueba el chatbot
-            </a>
-          </div>
-
-          <dl className="rise mt-12 flex flex-wrap gap-x-10 gap-y-4" style={{ animationDelay: "440ms" }}>
-            {[
-              ["24 h", "y ya tienes respuesta"],
-              ["1 sem", "y tu sitio está en línea"],
-              ["1", "persona: la que construye"],
-            ].map(([n, t]) => (
-              <div key={t}>
-                <dt className="display tabular text-[1.75rem] text-ink">{n}</dt>
-                <dd className="mt-1 text-[0.8125rem] text-ink-3">{t}</dd>
-              </div>
-            ))}
-          </dl>
+          <a href="#servicios" className="link-draw mt-7 inline-block cursor-pointer text-[0.9375rem] font-semibold text-accent">
+            Ver qué construyo
+          </a>
         </div>
-
-        <div className="rise hidden justify-self-end lg:block" style={{ animationDelay: "300ms" }} aria-hidden>
+        <div className="justify-self-center lg:justify-self-end" aria-hidden>
           <Terminal hora={hora} activo={activo} />
         </div>
       </div>
